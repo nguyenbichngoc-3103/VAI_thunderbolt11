@@ -1,0 +1,29 @@
+{
+  "name": "V Boost AI",
+  "description": "Trợ lý AI thông minh cho mọi nghề nghiệp",
+  "version": "1.0.0",
+  "app_id": "your_app_id_here",
+  "platform": "zalo",
+  "permissions": [
+    "user.profile",
+    "user.friends"
+  ],
+  "entry": {
+    "web": "index.html"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "theme": {
+    "primary_color": "#22c55e",
+    "secondary_color": "#3b82f6"
+  },
+  "features": {
+    "chat": true,
+    "payment": false,
+    "location": false
+  }
+} 

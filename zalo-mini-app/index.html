@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>V-AI - Zalo Mini App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #DBFFF8;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .typing-animation {
+            animation: typing 1.5s infinite;
+        }
+        @keyframes typing {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .message-bubble {
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        .scroll-container {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .career-card {
+            transition: all 0.3s ease;
+        }
+        .career-card:active {
+            transform: scale(0.95);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .zalo-header {
+            background: #DBFFF8;
+            color: #333;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #messages {
+            max-height: 60vh;
+            min-height: 200px;
+            overflow-y: auto !important;
+            scrollbar-width: thin;
+            scrollbar-color: #60a5fa #e5e7eb;
+        }
+        #messages::-webkit-scrollbar {
+            width: 8px;
+            background: #e5e7eb;
+        }
+        #messages::-webkit-scrollbar-thumb {
+            background: #60a5fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Career Selection Screen -->
+    <div id="careerSelection" class="h-full overflow-y-auto">
+        <div class="p-6">
+            <!-- Welcome Section -->
+            <div class="text-center mb-8 fade-in">
+                <div class="bg-white bg-opacity-30 p-6 rounded-3xl mb-6 shadow-lg">
+                    <div class="bg-white p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-md">
+                        <img src="boost.png" alt="V-AI Logo" class="w-20 h-20">
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-3">V-AI</h1>
+                    <p class="text-gray-700 text-lg mb-2">Dễ hiểu - Dễ dùng - Dễ ứng dụng</p>
+                </div>
+            </div>
+
+            <!-- Career Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Nông dân -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('farmer')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="leaf" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Nông dân</h3>
+                            <p class="text-gray-600">Thời tiết, canh tác, sâu bệnh</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Dự báo thời tiết nông nghiệp</li>
+                            <li>• Kỹ thuật canh tác hiện đại</li>
+                            <li>• Phòng trừ sâu bệnh</li>
+                            <li>• Quản lý năng suất cây trồng</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Doanh nhân -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('business')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="briefcase" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Doanh nhân</h3>
+                            <p class="text-gray-600">Kinh doanh, marketing, quản lý</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Chiến lược kinh doanh</li>
+                            <li>• Digital marketing</li>
+                            <li>• Quản lý tài chính</li>
+                            <li>• Phân tích thị trường</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Giáo viên -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('teacher')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="book-open" class="w-8 h-8 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Giáo viên</h3>
+                            <p class="text-gray-600">Giảng dạy, giáo án, quản lý</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Soạn giáo án hiệu quả</li>
+                            <li>• Phương pháp giảng dạy</li>
+                            <li>• Quản lý lớp học</li>
+                            <li>• Công nghệ giáo dục</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Lập trình viên -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('developer')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="code" class="w-8 h-8 text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Lập trình viên</h3>
+                            <p class="text-gray-600">Coding, debug, framework</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Best practices coding</li>
+                            <li>• Debug và troubleshooting</li>
+                            <li>• Framework và công nghệ</li>
+                            <li>• Code review và testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- Luật sư -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('lawyer')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="scale" class="w-8 h-8 text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Luật sư</h3>
+                            <p class="text-gray-600">Pháp lý, hợp đồng, tư vấn</p>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Tư vấn pháp lý</li>
+                            <li>• Soạn thảo hợp đồng</li>
+                            <li>• Thủ tục pháp lý</li>
+                            <li>• Nghiên cứu luật</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Saler (người bán hàng) -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('saler')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="shopping-bag" class="w-8 h-8 text-orange-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Saler</h3>
+                            <p class="text-gray-600">Bán hàng, marketing, chăm sóc khách hàng</p>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Kỹ năng bán hàng hiệu quả</li>
+                            <li>• Chăm sóc khách hàng</li>
+                            <li>• Marketing và quảng cáo</li>
+                            <li>• Quản lý đơn hàng</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Nhân viên văn phòng -->
+                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('office_worker')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-teal-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
+                            <i data-lucide="clipboard-list" class="w-8 h-8 text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Nhân viên văn phòng</h3>
+                            <p class="text-gray-600">Công việc, báo cáo, quản lý</p>
+                        </div>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-xl">
+                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Soạn thảo văn bản, email</li>
+                            <li>• Lập kế hoạch công việc</li>
+                            <li>• Tạo báo cáo, thống kê</li>
+                            <li>• Quản lý lịch biểu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other option -->
+            <div class="text-center mt-8">
+                <button onclick="selectCareer('other')" class="bg-white bg-opacity-80 hover:bg-opacity-100 px-6 py-3 rounded-full text-gray-700 font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i data-lucide="more-horizontal" class="w-5 h-5 inline mr-2"></i>
+                    Nghề khác
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (Hidden initially) -->
+    <div id="mainApp" class="hidden h-full flex flex-col">
+        <!-- Info Bar -->
+        <div class="bg-white shadow-sm p-4 text-center">
+            <div class="flex items-center justify-between">
+                <button onclick="changeCareer()" class="text-gray-600 hover:text-gray-800 p-2 rounded-full hover:bg-gray-100">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <div>
+                    <h2 class="text-gray-800 font-semibold text-lg" id="careerTitle">Trợ lý AI</h2>
+                    <p class="text-gray-500 text-sm" id="userInfo">Chào mừng bạn!</p>
+                </div>
+                <button onclick="shareApp()" class="text-gray-600 hover:text-gray-800 p-2 rounded-full hover:bg-gray-100">
+                    <i data-lucide="share" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="flex-1 flex flex-col bg-white">
+            <!-- Messages -->
+            <div id="messages" class="flex-1 overflow-y-auto p-4 space-y-4 scroll-container">
+                <!-- Messages will be added here -->
+            </div>
+
+            <!-- Input -->
+            <div class="p-4 bg-white border-t">
+                <div class="flex space-x-3">
+                    <input
+                        type="text"
+                        id="messageInput"
+                        placeholder="Nhập câu hỏi của bạn..."
+                        class="flex-1 px-4 py-3 border border-gray-200 rounded-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
+                        onkeypress="handleKeyPress(event)"
+                    />
+                    <button
+                        onclick="sendMessage()"
+                        id="sendButton"
+                        class="px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+                    >
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let currentCareer = '';
+        let isTyping = false;
+        let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+
+        console.log('Script initialized'); // Debug log
+        console.log('userProfile:', userProfile); // Debug log
+        console.log('currentCareer:', currentCareer); // Debug log
+
+        // Career-specific AI responses
+        const careerResponses = {
+            farmer: {
+                title: "NôngTrí AI",
+                greeting: [
+                    "Chào chú/cô! Cháu là NôngTrí, chuyên gia nông nghiệp đây ạ! 🌱\n\nCháu có thể giúp chú/cô với:\n• Thông tin thời tiết chi tiết\n• Kỹ thuật canh tác hiện đại\n• Phòng trừ sâu bệnh\n• Dự báo giá nông sản\n• Nhắc nhở công việc hàng ngày\n\nChú/cô cần cháu hỗ trợ gì hôm nay ạ?",
+                    "Xin chào! Cháu NôngTrí đây ạ! Sẵn sàng hỗ trợ chú/cô trong công việc nông nghiệp. Chú/cô có thể hỏi cháu về thời tiết, kỹ thuật trồng trọt, chăn nuôi, hoặc bất kỳ vấn đề nào khác nhé!"
+                ],
+                askDetail: "Để cháu có thể hỗ trợ tốt hơn, chú/cô có thể cho cháu biết:\n• Chú/cô đang trồng loại cây gì?\n• Diện tích canh tác của chú/cô?\n• Chú/cô đã làm nông nghiệp được bao lâu?",
+                followUpQuestions: [
+                    "Chú/cô đang trồng loại cây gì?",
+                    "Diện tích canh tác của chú/cô là bao nhiêu?",
+                    "Chú/cô gặp khó khăn gì về sâu bệnh?",
+                    "Chú/cô muốn tăng năng suất như thế nào?",
+                    "Thời tiết hiện tại ảnh hưởng gì đến cây trồng?",
+                    "Chú/cô có nuôi gà, vịt gì không?",
+                    "Chú/cô muốn biết về kỹ thuật trồng dưa lưới không?",
+                    "Chú/cô cần thông tin giá nông sản không?"
+                ],
+                weather: [
+                    "Dạ, hôm nay thời tiết khá thuận lợi cho việc canh tác ạ. Nhiệt độ 28°C, độ ẩm 75% - điều kiện tốt cho cây trồng phát triển.",
+                    "Dự báo thời tiết cho ngày mai: Nắng nhẹ, nhiệt độ 26-30°C. Đây là thời điểm tốt để bón phân và tưới nước ạ."
+                ],
+                farming: [
+                    "Dạ, để tăng năng suất cây trồng, chú/cô nên: 1) Tưới nước đều đặn vào sáng sớm, 2) Bón phân hữu cơ, 3) Kiểm tra sâu bệnh thường xuyên ạ.",
+                    "Kỹ thuật canh tác hiện đại: Sử dụng hệ thống tưới nhỏ giọt, trồng xen canh, và áp dụng IPM (Quản lý dịch hại tổng hợp) ạ."
+                ],
+                pest: [
+                    "Dạ, để phòng trừ sâu bệnh hiệu quả: 1) Thường xuyên kiểm tra cây trồng, 2) Sử dụng thuốc sinh học, 3) Duy trì đa dạng sinh học trong vườn ạ.",
+                    "Các loại thuốc sinh học an toàn: Bacillus thuringiensis, Beauveria bassiana, và các chế phẩm từ neem ạ."
+                ],
+                rice: {
+                    basic: "Dạ, về trồng lúa ở miền Tây, cháu sẽ hướng dẫn chú/cô chi tiết về bón phân và chăm sóc hiệu quả ạ.",
+                    detailed: {
+                        season: "🌾 Thời vụ trồng lúa miền Tây:\n• Vụ Đông Xuân: Tháng 11-3\n• Vụ Hè Thu: Tháng 4-8\n• Vụ Thu Đông: Tháng 8-11",
+                        fertilizer: "💩 Bón phân cho lúa:\n• Bón lót: Phân chuồng + NPK 20-20-15\n• Bón thúc lần 1 (7-10 ngày): NPK 20-20-15\n• Bón thúc lần 2 (25-30 ngày): NPK 16-16-8\n• Bón đón đòng: NPK 12-12-17",
+                        care: "🌱 Chăm sóc lúa:\n• Tưới nước: Giữ mực nước 3-5cm\n• Làm cỏ: 2-3 lần/vụ\n• Phòng bệnh: Đạo ôn, khô vằn\n• Thu hoạch: Khi lúa chín 85-90%"
+                    }
+                },
+                chili: {
+                    basic: "Dạ, về cây ớt bị vàng lá và rụng trái, có thể do nấm hoặc thiếu dinh dưỡng. Cháu sẽ hướng dẫn chú/cô cách xử lý ạ.",
+                    detailed: {
+                        disease: "🦠 Bệnh thường gặp trên ớt:\n• Bệnh thán thư: Đốm nâu, thối trái\n• Bệnh héo rũ: Do nấm Fusarium\n• Bệnh đốm lá: Do vi khuẩn\n• Bệnh virus: Lá vàng, còi cọc",
+                        treatment: "💊 Cách xử lý:\n• Phun thuốc sinh học: Trichoderma, Bacillus\n• Thuốc hóa học: Mancozeb, Copper\n• Cách ly cây bị bệnh\n• Vệ sinh vườn thường xuyên",
+                        nutrition: "🌿 Thiếu dinh dưỡng:\n• Thiếu N: Lá vàng nhạt\n• Thiếu P: Lá tím, rễ kém\n• Thiếu K: Lá vàng viền, rụng trái\n• Bón phân cân đối NPK"
+                    }
+                },
+                chicken: {
+                    basic: "Dạ, về gà thả vườn ăn ít và tiêu chảy, có thể do bệnh hoặc thức ăn. Cháu sẽ hướng dẫn chú/cô cách xử lý ạ.",
+                    detailed: {
+                        disease: "🐔 Bệnh thường gặp:\n• Bệnh Newcastle: Tiêu chảy, thở khó\n• Bệnh Gumboro: Tiêu chảy trắng\n• Bệnh cầu trùng: Tiêu chảy có máu\n• Bệnh E.coli: Tiêu chảy, bỏ ăn",
+                        treatment: "💊 Cách xử lý:\n• Cách ly gà bị bệnh\n• Vệ sinh chuồng trại\n• Bổ sung vitamin, điện giải\n• Thuốc kháng sinh nếu cần",
+                        prevention: "🛡️ Phòng bệnh:\n• Tiêm phòng đầy đủ\n• Vệ sinh chuồng trại\n• Thức ăn sạch, nước sạch\n• Kiểm tra sức khỏe định kỳ"
+                    }
+                },
+                melon: {
+                    basic: "Dạ, dưa lưới là cây trồng có giá trị kinh tế cao. Cháu sẽ hướng dẫn chú/cô kỹ thuật trồng dưa lưới từ A-Z để đạt năng suất tối ưu ạ.",
+                    detailed: {
+                        season: "🍈 Thời vụ trồng dưa lưới:\n• Miền Nam: Tháng 11-4 (mùa khô)\n• Miền Bắc: Tháng 2-4 và 8-10\n• Tránh mùa mưa để giảm bệnh\n• Nhiệt độ lý tưởng: 25-30°C",
+                        soil: "🪴 Chuẩn bị đất:\n• Đất tơi xốp, cao ráo, thoát nước tốt\n• pH: 6.0-7.0\n• Trộn: Đất + phân bò hoai + tro trấu + trichoderma\n• Có thể trồng trong thùng xốp, bao xi măng",
+                        seeding: "🌱 Gieo hạt:\n• Ngâm hạt nước ấm (2 sôi:3 lạnh) 6-8h\n• Ủ khăn ẩm 1 ngày\n• Gieo vào bầu ươm hoặc thẳng chậu\n• Sau 7-10 ngày cây cao 10-15cm thì trồng",
+                        care: "🧑‍🌾 Chăm sóc:\n• Tưới nước mỗi sáng, tránh tối\n• Bón phân:\n  - 7 ngày: NPK 16-16-8 pha loãng\n  - 15-20 ngày: Phân hữu cơ vi sinh\n  - Khi ra hoa: Phân Kali cao",
+                        pollination: "🌼 Thụ phấn:\n• Thụ phấn bằng tay (sáng sớm trước 9h)\n• Lấy nhụy đực chấm nhụy cái\n• Hoa cái có bầu nhỏ dưới đáy\n• Quan trọng cho năng suất",
+                        trellis: "🕸️ Làm giàn:\n• Giàn chữ A hoặc treo dây nylon\n• Giúp trái sạch, không méo\n• Cây leo cần hỗ trợ\n• Khoảng cách giàn: 1.5-2m",
+                        disease: "🐛 Phòng bệnh:\n• Nấm hại rễ, rỉ trắng, bọ trĩ\n• Thuốc sinh học: Trichoderma, Radiant, Abamectin\n• Duy trì độ ẩm vừa phải\n• Vệ sinh vườn thường xuyên",
+                        harvest: "⏱ Thu hoạch:\n• Sau 65-75 ngày\n• Vỏ chuyển vàng nhạt\n• Có lưới rõ, thơm nhẹ\n• Năng suất: 2-3kg/trái"
+                    },
+                    tips: [
+                        "Chọn giống dưa lưới chất lượng cao",
+                        "Làm giàn ngay từ đầu để cây leo tốt",
+                        "Thụ phấn đúng thời điểm để đậu trái nhiều",
+                        "Bón phân cân đối để trái ngọt",
+                        "Phòng bệnh sớm để tránh thiệt hại"
+                    ]
+                },
+                durian: {
+                    basic: "Dạ, về cây sầu riêng giai đoạn ra hoa, cháu sẽ hướng dẫn chú/cô loại phân phù hợp ạ.",
+                    detailed: {
+                        flowering: "🌸 Giai đoạn ra hoa:\n• Dùng phân bón lá có Bo cao\n• NPK 15-30-15 hoặc 10-30-20\n• Bón qua lá 2-3 lần\n• Tưới nước đều đặn",
+                        care: "🌳 Chăm sóc sầu riêng:\n• Tỉa cành tạo tán\n• Bón phân hữu cơ gốc\n• Phòng bệnh thán thư\n• Thụ phấn nhân tạo nếu cần"
+                    }
+                },
+                coffee: {
+                    basic: "Dạ, về cây cà phê, cháu sẽ nhắc chú/cô bón phân định kỳ vào sáng thứ Bảy hàng tuần ạ.",
+                    detailed: {
+                        schedule: "📅 Lịch bón phân cà phê:\n• Tháng 2-3: Bón phân hữu cơ\n• Tháng 4-5: NPK 20-20-15\n• Tháng 6-7: NPK 16-16-8\n• Tháng 8-9: NPK 12-12-17",
+                        reminder: "⏰ Nhắc nhở:\n• Bón phân vào sáng thứ Bảy\n• Tưới nước sau khi bón\n• Kiểm tra sâu bệnh\n• Ghi chép để theo dõi"
+                    }
+                },
+                price: {
+                    basic: "Dạ, về giá nông sản, cháu sẽ cập nhật thông tin mới nhất cho chú/cô ạ.",
+                    detailed: {
+                        rice: "🌾 Giá lúa IR50404 Long An:\n• Hôm nay: 7,200-7,500 đ/kg\n• Tuần trước: 7,000-7,300 đ/kg\n• Xu hướng: Tăng nhẹ\n• Khuyến nghị: Bán từng phần",
+                        fruit: "🍎 Giá trái cây:\n• Xoài: 15,000-25,000 đ/kg\n• Sầu riêng: 80,000-120,000 đ/kg\n• Dưa lưới: 25,000-35,000 đ/kg\n• Cà phê: 45,000-55,000 đ/kg"
+                    }
+                },
+                weed: {
+                    basic: "Dạ, về kỹ thuật diệt cỏ hiệu quả, cháu sẽ hướng dẫn chú/cô các phương pháp an toàn và hiệu quả ạ.",
+                    detailed: {
+                        manual: "👨‍🌾 Diệt cỏ thủ công:\n• Nhổ cỏ bằng tay: Hiệu quả, an toàn\n• Cắt cỏ bằng liềm: Nhanh, tiết kiệm\n• Làm cỏ định kỳ: 2-3 lần/vụ\n• Thời điểm: Sáng sớm hoặc chiều mát",
+                        chemical: "🧪 Thuốc diệt cỏ:\n• Glyphosate: Diệt cỏ toàn diện\n• 2,4-D: Diệt cỏ lá rộng\n• Paraquat: Diệt cỏ tiếp xúc\n• Lưu ý: Đọc kỹ hướng dẫn, bảo hộ đầy đủ",
+                        organic: "🌱 Diệt cỏ hữu cơ:\n• Muối: Rải muối vào gốc cỏ\n• Giấm: Phun giấm trắng 5%\n• Nước sôi: Đổ nước sôi vào gốc\n• Che phủ: Dùng bạt, rơm rạ",
+                        prevention: "🛡️ Phòng ngừa cỏ:\n• Trồng dày: Giảm ánh sáng đến đất\n• Che phủ: Rơm rạ, bạt nilon\n• Luân canh: Thay đổi cây trồng\n• Vệ sinh: Dọn sạch cỏ quanh vườn"
+                    }
+                },
+                office_worker: {
+                    basic: "Dạ, về công việc nhân viên văn phòng, cháu sẽ hướng dẫn chú/cô các kỹ năng cần thiết ạ.",
+                    detailed: {
+                        document: "📝 Soạn thảo văn bản:\n• Sử dụng công cụ soạn thảo văn bản\n• Làm quen với các định dạng văn bản\n• Kiểm tra chính tả, ngữ pháp\n• Định dạng văn bản theo yêu cầu",
+                        email: "📧 Email:\n• Viết email chuyên nghiệp\n• Sử dụng ngôn ngữ lịch sự\n• Đính kèm tệp tin, hình ảnh\n• Trả lời email kịp thời",
+                        schedule: "📅 Lập kế hoạch công việc:\n• Xác định mục tiêu công việc\n• Phân tích công việc cần làm\n• Ưu tiên công việc\n• Lên lịch công việc hợp lý",
+                        report: "📊 Tạo báo cáo, thống kê:\n• Sử dụng công cụ thống kê\n• Biểu đồ, bảng số liệu\n• Phân tích dữ liệu\n• Trình bày kết quả rõ ràng",
+                        calendar: "📅 Quản lý lịch biểu:\n• Sử dụng công cụ lịch biểu\n• Lên lịch họp, cuộc hẹn\n• Quản lý thời gian hiệu quả\n• Cập nhật lịch biểu định kỳ"
+                    }
+                }
+            },
+            business: {
+                title: "Trợ lý Doanh nhân",
+                greeting: [
+                    "Chào bạn! Tôi là V-AI, trợ lý thông minh cho doanh nhân. Tôi có thể giúp bạn với chiến lược kinh doanh, marketing, và quản lý. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc kinh doanh. Bạn có thể hỏi tôi về marketing, tài chính, hoặc quản lý doanh nghiệp."
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Bạn kinh doanh lĩnh vực gì?\n• Quy mô doanh nghiệp của bạn?\n• Mục tiêu kinh doanh hiện tại?",
+                followUpQuestions: [
+                    "Bạn kinh doanh lĩnh vực gì?",
+                    "Quy mô doanh nghiệp của bạn?",
+                    "Bạn gặp khó khăn gì trong marketing?",
+                    "Bạn muốn mở rộng thị trường như thế nào?",
+                    "Doanh thu hiện tại của bạn ra sao?"
+                ],
+                strategy: [
+                    "Để phát triển doanh nghiệp hiệu quả: 1) Phân tích thị trường mục tiêu, 2) Xây dựng chiến lược marketing, 3) Tối ưu hóa quy trình vận hành.",
+                    "Chiến lược kinh doanh hiện đại: Sử dụng digital marketing, phân tích dữ liệu khách hàng, và áp dụng công nghệ 4.0."
+                ],
+                marketing: [
+                    "Các kênh marketing hiệu quả: 1) Social media marketing, 2) Content marketing, 3) Email marketing, 4) SEO/SEM.",
+                    "Để tăng doanh số: Tập trung vào trải nghiệm khách hàng, xây dựng thương hiệu mạnh, và sử dụng data analytics."
+                ],
+                finance: {
+                    basic: "Quản lý tài chính doanh nghiệp là yếu tố quan trọng để phát triển bền vững.",
+                    detailed: {
+                        planning: "📊 Lập kế hoạch tài chính:\n• Dự báo doanh thu theo tháng/quý/năm\n• Phân bổ ngân sách cho các hoạt động\n• Thiết lập quỹ dự phòng 10-15%\n• Theo dõi dòng tiền hàng ngày",
+                        cost: "💰 Kiểm soát chi phí:\n• Phân loại chi phí cố định và biến động\n• Tối ưu hóa chi phí vận hành\n• Đàm phán với nhà cung cấp\n• Sử dụng công nghệ để tiết kiệm",
+                        investment: "💹 Đầu tư thông minh:\n• Đa dạng hóa danh mục đầu tư\n• Đánh giá ROI trước khi đầu tư\n• Tái đầu tư lợi nhuận hợp lý\n• Xây dựng quỹ phát triển"
+                    }
+                },
+                digital: {
+                    basic: "Digital marketing là chìa khóa thành công trong thời đại số.",
+                    detailed: {
+                        social: "📱 Social Media Marketing:\n• Facebook/Instagram: Tương tác cao, quảng cáo hiệu quả\n• TikTok: Xu hướng trẻ, viral nhanh\n• LinkedIn: B2B, networking chuyên nghiệp\n• YouTube: Content dài, SEO tốt",
+                        content: "📝 Content Marketing:\n• Blog: SEO, xây dựng authority\n• Video: Tương tác cao, dễ nhớ\n• Infographic: Dễ chia sẻ, thông tin rõ ràng\n• Podcast: Tiếp cận khách hàng mục tiêu",
+                        seo: "🔍 SEO & SEM:\n• Từ khóa: Nghiên cứu, tối ưu hóa\n• On-page: Meta tags, content quality\n• Off-page: Backlinks, social signals\n• Local SEO: Google My Business"
+                    }
+                },
+                management: {
+                    basic: "Quản lý doanh nghiệp hiệu quả cần hệ thống và quy trình rõ ràng.",
+                    detailed: {
+                        team: "👥 Quản lý nhân sự:\n• Tuyển dụng: Job description rõ ràng\n• Đào tạo: Kế hoạch phát triển kỹ năng\n• Đánh giá: KPI, feedback định kỳ\n• Giữ chân: Lương thưởng, môi trường làm việc",
+                        process: "⚙️ Tối ưu quy trình:\n• Mapping: Vẽ sơ đồ quy trình hiện tại\n• Phân tích: Tìm điểm nghẽn, lãng phí\n• Cải tiến: Áp dụng Lean, Six Sigma\n• Tự động hóa: Sử dụng công nghệ",
+                        quality: "✅ Quản lý chất lượng:\n• Tiêu chuẩn: ISO, industry standards\n• Kiểm soát: QC/QA procedures\n• Cải tiến: PDCA cycle\n• Khách hàng: Feedback, satisfaction"
+                    }
+                }
+            },
+            teacher: {
+                title: "Trợ lý Giáo viên",
+                greeting: [
+                    "Chào bạn! Tôi là V AI, trợ lý thông minh cho giáo viên. Tôi có thể giúp bạn soạn giáo án, quản lý lớp học, và phương pháp giảng dạy. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc giảng dạy. Bạn có thể hỏi tôi về phương pháp sư phạm, công nghệ giáo dục."
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Bạn dạy môn học gì?\n• Cấp học bạn đang dạy?\n• Khó khăn trong giảng dạy?",
+                followUpQuestions: [
+                    "Bạn dạy môn học gì?",
+                    "Bạn dạy cấp học nào?",
+                    "Bạn gặp khó khăn gì trong giảng dạy?",
+                    "Bạn muốn cải thiện phương pháp dạy như thế nào?",
+                    "Sĩ số lớp học của bạn là bao nhiêu?"
+                ],
+                lesson: [
+                    "Để soạn giáo án hiệu quả: 1) Xác định mục tiêu học tập rõ ràng, 2) Thiết kế hoạt động đa dạng, 3) Đánh giá kết quả học tập.",
+                    "Phương pháp giảng dạy hiện đại: Sử dụng công nghệ, học tập dựa trên dự án, và học tập hợp tác."
+                ],
+                management: [
+                    "Quản lý lớp học hiệu quả: 1) Thiết lập quy tắc rõ ràng, 2) Tạo môi trường học tập tích cực, 3) Giao tiếp hiệu quả với phụ huynh.",
+                    "Công nghệ giáo dục: Sử dụng LMS, công cụ đánh giá trực tuyến, và phương pháp blended learning."
+                ],
+                methodology: {
+                    basic: "Phương pháp giảng dạy hiện đại giúp tăng hiệu quả học tập.",
+                    detailed: {
+                        active: "🎯 Học tập chủ động:\n• Project-based learning: Học qua dự án thực tế\n• Problem-based learning: Giải quyết vấn đề\n• Inquiry-based learning: Học qua khám phá\n• Cooperative learning: Học tập hợp tác",
+                        tech: "💻 Công nghệ trong giảng dạy:\n• LMS: Moodle, Google Classroom\n• Interactive tools: Kahoot, Mentimeter\n• Virtual reality: Mô phỏng 3D\n• AI tools: ChatGPT, Grammarly",
+                        assessment: "📊 Đánh giá đa dạng:\n• Formative: Đánh giá quá trình\n• Summative: Đánh giá cuối kỳ\n• Peer assessment: Đánh giá đồng đẳng\n• Self-assessment: Tự đánh giá"
+                    }
+                },
+                classroom: {
+                    basic: "Quản lý lớp học hiệu quả tạo môi trường học tập tốt.",
+                    detailed: {
+                        rules: "📋 Thiết lập quy tắc:\n• Quy tắc rõ ràng, dễ hiểu\n• Thống nhất với học sinh\n• Khen thưởng tích cực\n• Xử lý vi phạm công bằng",
+                        environment: "🌱 Môi trường học tập:\n• Bố trí lớp học linh hoạt\n• Tạo không gian sáng tạo\n• Sử dụng màu sắc tích cực\n• Ánh sáng và âm thanh phù hợp",
+                        communication: "💬 Giao tiếp hiệu quả:\n• Lắng nghe tích cực\n• Phản hồi kịp thời\n• Giao tiếp với phụ huynh\n• Xây dựng mối quan hệ tin cậy"
+                    }
+                },
+                curriculum: {
+                    basic: "Thiết kế chương trình giảng dạy phù hợp với mục tiêu.",
+                    detailed: {
+                        planning: "📝 Lập kế hoạch giảng dạy:\n• Phân tích mục tiêu học tập\n• Thiết kế hoạt động đa dạng\n• Phân bổ thời gian hợp lý\n• Chuẩn bị tài liệu hỗ trợ",
+                        differentiation: "🎨 Phân hóa giảng dạy:\n• Đánh giá năng lực học sinh\n• Thiết kế nhiệm vụ đa dạng\n• Hỗ trợ cá nhân hóa\n• Đánh giá theo tiến độ",
+                        integration: "🔗 Tích hợp liên môn:\n• Kết nối kiến thức các môn\n• Dự án liên môn\n• Ứng dụng thực tế\n• Phát triển kỹ năng tổng hợp"
+                    }
+                }
+            },
+            developer: {
+                title: "Trợ lý Lập trình viên",
+                greeting: [
+                    "Chào bạn! Tôi là V AI, trợ lý thông minh cho lập trình viên. Tôi có thể giúp bạn với coding, debug, và kiến trúc phần mềm. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc lập trình. Bạn có thể hỏi tôi về code, framework, hoặc best practices."
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Ngôn ngữ lập trình bạn chuyên?\n• Frontend hay Backend?\n• Dự án hiện tại bạn đang làm?",
+                followUpQuestions: [
+                    "Bạn chuyên về ngôn ngữ lập trình nào?",
+                    "Bạn làm frontend hay backend?",
+                    "Bạn gặp khó khăn gì trong coding?",
+                    "Bạn muốn học framework mới nào?",
+                    "Dự án hiện tại bạn đang làm là gì?"
+                ],
+                coding: [
+                    "Best practices trong lập trình: 1) Clean code, 2) Code review, 3) Unit testing, 4) Documentation.",
+                    "Các framework phổ biến: React, Vue.js, Angular cho frontend; Node.js, Django, Spring cho backend."
+                ],
+                debug: [
+                    "Kỹ thuật debug hiệu quả: 1) Sử dụng debugger, 2) Logging, 3) Error handling, 4) Performance monitoring.",
+                    "Công cụ debug: Chrome DevTools, VS Code debugger, Postman, và các IDE tích hợp."
+                ],
+                frontend: {
+                    basic: "Frontend development tập trung vào trải nghiệm người dùng.",
+                    detailed: {
+                        frameworks: "⚛️ Framework phổ biến:\n• React: Component-based, ecosystem lớn\n• Vue.js: Dễ học, progressive framework\n• Angular: Enterprise, TypeScript native\n• Svelte: Compile-time framework, performance cao",
+                        tools: "🛠️ Công cụ phát triển:\n• Build tools: Webpack, Vite, Parcel\n• Package managers: npm, yarn, pnpm\n• CSS frameworks: Tailwind, Bootstrap, Material-UI\n• Testing: Jest, Cypress, Playwright",
+                        optimization: "🚀 Tối ưu hóa:\n• Code splitting: Lazy loading components\n• Image optimization: WebP, lazy loading\n• Caching: Service workers, CDN\n• Performance: Lighthouse, Core Web Vitals"
+                    }
+                },
+                backend: {
+                    basic: "Backend development xử lý logic nghiệp vụ và dữ liệu.",
+                    detailed: {
+                        languages: "🐍 Ngôn ngữ phổ biến:\n• Python: Django, Flask, FastAPI\n• Node.js: Express, NestJS, Koa\n• Java: Spring Boot, Jakarta EE\n• C#: ASP.NET Core, Entity Framework",
+                        databases: "🗄️ Cơ sở dữ liệu:\n• SQL: PostgreSQL, MySQL, SQL Server\n• NoSQL: MongoDB, Redis, Cassandra\n• ORM: Prisma, Sequelize, Entity Framework\n• Migration: Version control cho database",
+                        architecture: "🏗️ Kiến trúc hệ thống:\n• Microservices: Chia nhỏ ứng dụng\n• REST API: Stateless, resource-based\n• GraphQL: Flexible data fetching\n• Event-driven: Message queues, pub/sub"
+                    }
+                },
+                devops: {
+                    basic: "DevOps kết hợp development và operations.",
+                    detailed: {
+                        ci_cd: "🔄 CI/CD Pipeline:\n• Version control: Git, GitHub Actions\n• Build automation: Jenkins, GitLab CI\n• Deployment: Docker, Kubernetes\n• Monitoring: Prometheus, Grafana",
+                        cloud: "☁️ Cloud platforms:\n• AWS: EC2, S3, Lambda, RDS\n• Azure: App Service, Functions, Cosmos DB\n• GCP: Compute Engine, Cloud Storage, Firebase\n• Serverless: FaaS, BaaS",
+                        security: "🔒 Bảo mật:\n• Authentication: JWT, OAuth, OIDC\n• Authorization: RBAC, ABAC\n• Encryption: HTTPS, TLS, data encryption\n• Security scanning: SAST, DAST, dependency check"
+                    }
+                }
+            },
+            lawyer: {
+                title: "Trợ lý Luật sư",
+                greeting: [
+                    "Chào bạn! Tôi là V AI, trợ lý thông minh cho luật sư. Tôi có thể giúp bạn với tư vấn pháp lý, soạn thảo văn bản. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc pháp lý. Bạn có thể hỏi tôi về luật, hợp đồng, hoặc thủ tục pháp lý."
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Lĩnh vực pháp lý bạn chuyên?\n• Làm việc độc lập hay công ty?\n• Loại vụ án thường xử lý?",
+                followUpQuestions: [
+                    "Bạn chuyên về lĩnh vực pháp lý nào?",
+                    "Bạn làm việc độc lập hay công ty luật?",
+                    "Bạn gặp khó khăn gì trong tư vấn?",
+                    "Bạn muốn mở rộng chuyên môn như thế nào?",
+                    "Loại vụ án bạn thường xử lý là gì?"
+                ],
+                legal: [
+                    "Tư vấn pháp lý: 1) Phân tích tình huống, 2) Nghiên cứu luật liên quan, 3) Đưa ra khuyến nghị pháp lý.",
+                    "Soạn thảo văn bản: Hợp đồng, đơn từ, và các văn bản pháp lý khác."
+                ],
+                contract: [
+                    "Soạn thảo hợp đồng: 1) Xác định các bên, 2) Điều khoản và điều kiện, 3) Quyền và nghĩa vụ, 4) Giải quyết tranh chấp.",
+                    "Các loại hợp đồng phổ biến: Hợp đồng lao động, hợp đồng mua bán, hợp đồng thuê mướn."
+                ],
+                lawsuit: "⚖️ Khởi kiện tại tòa án:\n• Soạn thảo và nộp đơn khởi kiện\n• Nộp tạm ứng án phí\n• Tham gia các phiên họp và phiên tòa\n• Thi hành án theo bản án/quyết định của Tòa án"
+            },
+            office_worker: {
+                title: "Trợ lý Văn phòng",
+                greeting: [
+                    "Chào bạn! Tôi là V-AI, trợ lý văn phòng thông minh. Tôi có thể giúp bạn với các công việc văn phòng, báo cáo và quản lý. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc văn phòng. Bạn có thể hỏi tôi về soạn thảo văn bản, quản lý lịch biểu, hoặc tạo báo cáo."
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Công việc chính của bạn là gì?\n• Bạn thường gặp khó khăn gì trong công việc?\n• Bạn muốn tôi giúp gì cụ thể?",
+                followUpQuestions: [
+                    "Làm thế nào để viết email chuyên nghiệp?",
+                    "Cách lập kế hoạch công việc hiệu quả?",
+                    "Giúp tôi tạo một báo cáo tuần.",
+                    "Làm sao để quản lý thời gian tốt hơn?",
+                    "Các công cụ văn phòng hữu ích là gì?"
+                ],
+                document: [
+                    "Để soạn thảo văn bản chuyên nghiệp: 1) Sử dụng tiêu đề rõ ràng, 2) Chia nhỏ các đoạn văn, 3) Kiểm tra lỗi chính tả và ngữ pháp.",
+                    "Mẫu email chuyên nghiệp: Bắt đầu bằng lời chào, trình bày rõ mục đích, kết thúc bằng lời cảm ơn và chữ ký."
+                ],
+                planning: [
+                    "Để lập kế hoạch công việc hiệu quả: 1) Liệt kê các công việc cần làm, 2) Sắp xếp theo thứ tự ưu tiên, 3) Đặt thời gian hoàn thành cho mỗi công việc.",
+                    "Sử dụng các công cụ như Trello, Asana, hoặc Google Calendar để quản lý công việc và lịch biểu."
+                ]
+            },
+            other: {
+                title: "Trợ lý AI đa năng",
+                greeting: [
+                    "Chào bạn! Tôi là V AI, trợ lý AI thông minh. Tôi có thể giúp bạn với nhiều lĩnh vực khác nhau. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc. Bạn có thể hỏi tôi về bất kỳ vấn đề nào."
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Lĩnh vực bạn làm việc?\n• Công việc hiện tại?\n• Mục tiêu nghề nghiệp?",
+                followUpQuestions: [
+                    "Bạn làm việc trong lĩnh vực gì?",
+                    "Công việc hiện tại của bạn như thế nào?",
+                    "Bạn gặp khó khăn gì trong công việc?",
+                    "Bạn muốn phát triển kỹ năng gì?",
+                    "Mục tiêu nghề nghiệp của bạn là gì?"
+                ],
+                general: [
+                    "Tôi có thể hỗ trợ bạn với: 1) Tìm kiếm thông tin, 2) Phân tích dữ liệu, 3) Tư vấn chung, 4) Hỗ trợ công việc.",
+                    "Hãy cho tôi biết bạn làm việc trong lĩnh vực nào để tôi có thể hỗ trợ tốt hơn."
+                ]
+            },
+            saler: {
+                title: "Saler AI",
+                greeting: [
+                    "Chào bạn! Tôi là Saler AI, chuyên gia bán hàng và marketing đây! 💼\n\nTôi có thể giúp bạn với:\n• Kỹ thuật bán hàng hiệu quả\n• Chăm sóc khách hàng VIP\n• Marketing online & social media\n• Quản lý đơn hàng & doanh số\n• Xử lý phản đối khách hàng\n• Tăng doanh số bán hàng\n\nBạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi Saler AI đây! Sẵn sàng hỗ trợ bạn trong lĩnh vực bán hàng và marketing. Bạn có thể hỏi tôi về kỹ thuật bán hàng, chăm sóc khách hàng, hoặc bất kỳ vấn đề nào khác nhé!"
+                ],
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Bạn bán sản phẩm/dịch vụ gì?\n• Đối tượng khách hàng mục tiêu?\n• Bạn đã làm sales được bao lâu?",
+                followUpQuestions: [
+                    "Bạn bán sản phẩm/dịch vụ gì?",
+                    "Đối tượng khách hàng mục tiêu của bạn?",
+                    "Bạn gặp khó khăn gì trong bán hàng?",
+                    "Bạn muốn tăng doanh số như thế nào?",
+                    "Kênh bán hàng chính của bạn là gì?"
+                ],
+                sales: [
+                    "Kỹ năng bán hàng: 1) Lắng nghe nhu cầu khách hàng, 2) Giới thiệu sản phẩm phù hợp, 3) Xử lý phản đối, 4) Kết thúc bán hàng.",
+                    "Các kỹ thuật bán hàng: SPIN Selling, Solution Selling, và Consultative Selling."
+                ],
+                customer: [
+                    "Chăm sóc khách hàng: 1) Theo dõi sau bán hàng, 2) Giải quyết khiếu nại, 3) Xây dựng mối quan hệ lâu dài.",
+                    "CRM và quản lý khách hàng: Hệ thống quản lý thông tin khách hàng hiệu quả."
+                ],
+                saler: [
+                    '💰 Kỹ thuật bán hàng hiệu quả',
+                    '🎯 Chăm sóc khách hàng VIP',
+                    '📱 Marketing online & social media',
+                    '📊 Quản lý đơn hàng & doanh số',
+                    '🤝 Xử lý phản đối khách hàng',
+                    '📈 Tăng doanh số bán hàng',
+                    '💼 Kỹ năng thuyết trình sản phẩm',
+                    '📋 Quản lý danh sách khách hàng',
+                    '🎨 Chiến lược marketing sáng tạo'
+                ]
+            }
+        };
+
+        // Get user info from Zalo
+        // This is a placeholder. In a real Zalo Mini App, you'd use Zalo's JS SDK.
+        function getUserInfo() {
+            // Check if user info is in localStorage
+            if (localStorage.getItem('userProfile')) {
+                userProfile = JSON.parse(localStorage.getItem('userProfile'));
+                console.log('User profile loaded from localStorage:', userProfile);
+                return;
+            }
+
+            // Mock user info if not available
+            userProfile = {
+                id: '123456789',
+                name: 'Người dùng Zalo',
+                avatar: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'
+            };
+            console.log('Mock user profile created:', userProfile);
+        }
+
+        function selectCareer(career) {
+            console.log('Career selected:', career); // Debug log
+            currentCareer = career;
+            localStorage.setItem('selectedCareer', career);
+
+            document.getElementById('careerSelection').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+
+            const careerData = careerResponses[career] || careerResponses.other;
+            document.getElementById('careerTitle').textContent = careerData.title;
+            document.getElementById('userInfo').textContent = `Chào mừng, ${userProfile.name}!`;
+
+            // Clear previous messages and add a new welcome message
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = ''; // Clear existing messages
+            addMessage(getRandomResponse(careerData.greeting), 'ai');
+
+            // Ask for more details if available for the career
+            if (careerData.askDetail) {
+                setTimeout(() => {
+                    askForMoreDetails();
+                }, 1500);
+            }
+        }
+
+        function askForMoreDetails() {
+            const careerData = careerResponses[currentCareer];
+            if (!careerData || !careerData.askDetail) return;
+
+            // Simple ask for details
+            // addMessage(careerData.askDetail, 'ai');
+
+            // Ask for details with suggestion chips
+            const suggestions = (careerData.followUpQuestions || []).map(q => ({ text: q, isQuestion: true }));
+            addMessageWithSuggestions(careerData.askDetail, 'ai', suggestions);
+        }
+
+        function changeCareer() {
+            currentCareer = '';
+            localStorage.removeItem('selectedCareer');
+            document.getElementById('careerSelection').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+        }
+        
+        function shareApp() {
+            // Placeholder for Zalo's share functionality
+            alert('Chức năng chia sẻ đang được phát triển!');
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('messages');
+            const messageBubble = document.createElement('div');
+            messageBubble.classList.add('message-bubble', 'p-4', 'rounded-2xl', 'fade-in', 'max-w-xs', 'md:max-w-md');
+
+            const senderIcon = document.createElement('div');
+            senderIcon.classList.add('w-10', 'h-10', 'rounded-full', 'bg-gray-200', 'flex-shrink-0');
+            const senderImg = document.createElement('img');
+            senderImg.classList.add('w-10', 'h-10', 'rounded-full');
+
+            const messageContent = document.createElement('div');
+            messageContent.innerHTML = text.replace(/\n/g, '<br>');
+
+
+            if (sender === 'user') {
+                messageBubble.classList.add('bg-blue-500', 'text-white', 'self-end');
+                senderImg.src = userProfile.avatar;
+                const messageContainer = document.createElement('div');
+                messageContainer.classList.add('flex', 'items-end', 'justify-end', 'space-x-3');
+                messageContainer.appendChild(messageContent);
+                messageContainer.appendChild(senderIcon);
+                senderIcon.appendChild(senderImg);
+                messageBubble.appendChild(messageContainer);
+            } else {
+                messageBubble.classList.add('bg-white', 'text-gray-800', 'self-start', 'shadow');
+                senderImg.src = 'boost.png';
+                const messageContainer = document.createElement('div');
+                messageContainer.classList.add('flex', 'items-end', 'space-x-3');
+                senderIcon.appendChild(senderImg);
+                messageContainer.appendChild(senderIcon);
+                messageContainer.appendChild(messageContent);
+                messageBubble.appendChild(messageContainer);
+            }
+            
+            // Append the whole bubble to the messages div
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('flex', sender === 'user' ? 'justify-end' : 'justify-start');
+            wrapper.appendChild(messageBubble);
+
+            messagesDiv.appendChild(wrapper);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function addMessageWithSuggestions(text, sender, suggestions = []) {
+            addMessage(text, sender);
+
+            if (suggestions.length > 0) {
+                const suggestionsContainer = document.createElement('div');
+                suggestionsContainer.classList.add('flex', 'flex-wrap', 'gap-2', 'mt-3', 'justify-start', 'pl-14');
+
+                suggestions.forEach(suggestion => {
+                    const button = document.createElement('button');
+                    button.classList.add('bg-blue-100', 'text-blue-800', 'px-4', 'py-2', 'rounded-full', 'text-sm', 'hover:bg-blue-200', 'transition-colors');
+                    button.textContent = suggestion.text;
+                    button.onclick = () => handleSuggestionClick(suggestion);
+                    suggestionsContainer.appendChild(button);
+                });
+
+                document.getElementById('messages').appendChild(suggestionsContainer);
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+            }
+        }
+        
+        function handleSuggestionClick(suggestion) {
+            const messageInput = document.getElementById('messageInput');
+            messageInput.value = suggestion.text;
+            sendMessage();
+            // Hide suggestions after one is clicked
+            const suggestionsContainers = document.querySelectorAll('.flex.flex-wrap.gap-2');
+            suggestionsContainers.forEach(c => c.remove());
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (message && !isTyping) {
+                addMessage(message, 'user');
+                messageInput.value = '';
+                
+                // Disable send button while AI is "typing"
+                document.getElementById('sendButton').disabled = true;
+
+                // Simulate AI typing
+                setTimeout(() => {
+                    isTyping = true;
+                    addTypingIndicator();
+                }, 500);
+
+                // Simulate AI response
+                setTimeout(() => {
+                    isTyping = false;
+                    removeTypingIndicator();
+                    const aiResponse = generateResponse(message);
+                    addMessage(aiResponse, 'ai');
+                    
+                    // Re-enable send button
+                    document.getElementById('sendButton').disabled = false;
+                }, 2000 + Math.random() * 1000); // Simulate network delay
+            }
+        }
+
+        function addTypingIndicator() {
+            const messagesDiv = document.getElementById('messages');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.id = 'typingIndicator';
+            typingIndicator.classList.add('flex', 'items-center', 'space-x-2', 'self-start', 'pl-14', 'py-2');
+            typingIndicator.innerHTML = `
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.4s;"></div>
+            `;
+            messagesDiv.appendChild(typingIndicator);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function getRandomResponse(responses) {
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+        
+        function generateResponse(userInput) {
+            const careerData = careerResponses[currentCareer];
+            if (!careerData) return "Tôi chưa hiểu rõ. Bạn có thể nói rõ hơn không?";
+
+            userInput = userInput.toLowerCase();
+
+            // Simple keyword matching
+            if (userInput.includes('thời tiết')) {
+                return getRandomResponse(careerData.weather || ["Tôi không có thông tin về thời tiết cho ngành này."]);
+            }
+            if (userInput.includes('trồng trọt') || userInput.includes('canh tác')) {
+                return getRandomResponse(careerData.farming || ["Tôi không có thông tin về trồng trọt cho ngành này."]);
+            }
+            if (userInput.includes('sâu bệnh')) {
+                return getRandomResponse(careerData.pest || ["Tôi không có thông tin về sâu bệnh cho ngành này."]);
+            }
+            if (userInput.includes('kinh doanh')) {
+                return getRandomResponse(careerData.strategy || ["Tôi không có thông tin về kinh doanh cho ngành này."]);
+            }
+            if (userInput.includes('marketing')) {
+                return getRandomResponse(careerData.marketing || ["Tôi không có thông tin về marketing cho ngành này."]);
+            }
+            if (userInput.includes('giáo án') || userInput.includes('giảng dạy')) {
+                return getRandomResponse(careerData.lesson || ["Tôi không có thông tin về giáo án cho ngành này."]);
+            }
+            if (userInput.includes('lớp học')) {
+                return getRandomResponse(careerData.management || ["Tôi không có thông tin về quản lý lớp học cho ngành này."]);
+            }
+            if (userInput.includes('code') || userInput.includes('lập trình')) {
+                return getRandomResponse(careerData.coding || ["Tôi không có thông tin về lập trình cho ngành này."]);
+            }
+            if (userInput.includes('debug')) {
+                return getRandomResponse(careerData.debugging || ["Tôi không có thông tin về debug cho ngành này."]);
+            }
+            if (userInput.includes('hợp đồng') || userInput.includes('pháp lý')) {
+                return getRandomResponse(careerData.legal_advice || ["Tôi không có thông tin về pháp lý cho ngành này."]);
+            }
+             if (userInput.includes('soạn thảo') || userInput.includes('văn bản')) {
+                return getRandomResponse(careerData.document || ["Tôi không có thông tin về soạn thảo văn bản cho ngành này."]);
+            }
+            if (userInput.includes('kế hoạch') || userInput.includes('công việc')) {
+                return getRandomResponse(careerData.planning || ["Tôi không có thông tin về lập kế hoạch công việc cho ngành này."]);
+            }
+
+
+            // Detailed responses for specific queries
+            if (currentCareer === 'farmer') {
+                if (userInput.includes('lúa')) return careerData.rice.detailed.season + '\n\n' + careerData.rice.detailed.fertilizer;
+                if (userInput.includes('ớt')) return careerData.chili.detailed.disease;
+                if (userInput.includes('gà')) return careerData.chicken.detailed.disease;
+                if (userInput.includes('dưa lưới')) return careerData.melon.detailed.care;
+            }
+
+            // Fallback response
+            const randomFollowUp = getRandomResponse(careerData.followUpQuestions || ["Bạn cần tôi giúp gì khác không?"]);
+            return `Tôi chưa hiểu rõ ý của bạn. Bạn có thể hỏi về: "${randomFollowUp}" không?`;
+        }
+
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            getUserInfo();
+            const savedCareer = localStorage.getItem('selectedCareer');
+            if (savedCareer) {
+                selectCareer(savedCareer);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>VănPhòngTrí - Trợ lý AI Văn phòng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .typing-animation {
+            animation: typing 1.5s infinite;
+        }
+        @keyframes typing {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .message-bubble {
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        .scroll-container {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #messages {
+            max-height: 60vh;
+            min-height: 200px;
+            overflow-y: auto !important;
+            scrollbar-width: thin;
+            scrollbar-color: #60a5fa #e5e7eb;
+        }
+        #messages::-webkit-scrollbar {
+            width: 8px;
+            background: #e5e7eb;
+        }
+        #messages::-webkit-scrollbar-thumb {
+            background: #60a5fa;
+            border-radius: 4px;
+        }
+        .suggestion-chip {
+            transition: all 0.3s ease;
+        }
+        .suggestion-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App -->
+    <div class="h-full flex flex-col">
+        <!-- Header -->
+        <div class="bg-white shadow-sm p-4 text-center">
+            <div class="flex items-center justify-center space-x-3">
+                <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-3 rounded-full">
+                    <i data-lucide="clipboard-list" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h2 class="text-gray-800 font-bold text-xl">VănPhòngTrí</h2>
+                    <p class="text-gray-500 text-sm">Trợ lý AI Văn phòng thông minh</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="flex-1 flex flex-col bg-white">
+            <!-- Messages -->
+            <div id="messages" class="flex-1 overflow-y-auto p-4 space-y-4 scroll-container">
+                <!-- Messages will be added here -->
+            </div>
+
+            <!-- Input -->
+            <div class="p-4 bg-white border-t">
+                <div class="flex space-x-3">
+                    <input
+                        type="text"
+                        id="messageInput"
+                        placeholder="Nhập câu hỏi của bạn..."
+                        class="flex-1 px-4 py-3 border border-gray-200 rounded-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
+                        onkeypress="handleKeyPress(event)"
+                    />
+                    <button
+                        onclick="sendMessage()"
+                        id="sendButton"
+                        class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl"
+                    >
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let isTyping = false;
+        let userProfile = {
+            name: 'Bạn',
+            avatar: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'
+        };
+
+        // Office-specific AI responses
+        const officeResponses = {
+            greeting: [
+                "Chào bạn! Tôi là VănPhòngTrí, trợ lý AI chuyên về công việc văn phòng đây! 📋\n\nTôi có thể giúp bạn với:\n• Soạn thảo văn bản, email chuyên nghiệp\n• Lập kế hoạch công việc hiệu quả\n• Tạo báo cáo, thống kê chi tiết\n• Quản lý lịch biểu, cuộc họp\n• Công cụ văn phòng hữu ích\n\nBạn cần tôi hỗ trợ gì hôm nay?",
+                "Xin chào! Tôi VănPhòngTrí đây! Sẵn sàng hỗ trợ bạn trong mọi công việc văn phòng. Bạn có thể hỏi tôi về soạn thảo văn bản, quản lý thời gian, hoặc bất kỳ vấn đề nào khác nhé!"
+            ],
+            askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Công việc chính của bạn là gì?\n• Bạn thường gặp khó khăn gì trong công việc?\n• Bạn muốn tôi giúp gì cụ thể?",
+            followUpQuestions: [
+                "Làm thế nào để viết email chuyên nghiệp?",
+                "Cách lập kế hoạch công việc hiệu quả?",
+                "Giúp tôi tạo một báo cáo tuần.",
+                "Làm sao để quản lý thời gian tốt hơn?",
+                "Các công cụ văn phòng hữu ích là gì?",
+                "Cách tổ chức cuộc họp hiệu quả?",
+                "Làm thế nào để xử lý email nhanh chóng?",
+                "Cách tạo template văn bản?"
+            ],
+            document: {
+                basic: "Dạ, để soạn thảo văn bản chuyên nghiệp, tôi sẽ hướng dẫn bạn từng bước ạ.",
+                detailed: {
+                    structure: "📝 Cấu trúc văn bản chuyên nghiệp:\n• Tiêu đề: Rõ ràng, ngắn gọn\n• Mở đầu: Nêu mục đích, bối cảnh\n• Nội dung chính: Chia thành các đoạn logic\n• Kết luận: Tóm tắt, đề xuất hành động\n• Chữ ký: Thông tin liên hệ đầy đủ",
+                    formatting: "🎨 Định dạng văn bản:\n• Font chữ: Arial, Times New Roman\n• Cỡ chữ: 12-14pt cho nội dung\n• Căn lề: 2.5cm tất cả các cạnh\n• Khoảng cách dòng: 1.5\n• Đánh số trang, mục lục",
+                    proofreading: "✅ Kiểm tra và chỉnh sửa:\n• Kiểm tra chính tả, ngữ pháp\n• Đảm bảo tính nhất quán\n• Xem lại logic và mạch lạc\n• Nhờ đồng nghiệp review\n• Đọc lại trước khi gửi"
+                }
+            },
+            email: {
+                basic: "Dạ, về viết email chuyên nghiệp, tôi sẽ hướng dẫn bạn các nguyên tắc quan trọng ạ.",
+                detailed: {
+                    structure: "📧 Cấu trúc email chuyên nghiệp:\n• Subject line: Ngắn gọn, rõ mục đích\n• Lời chào: Phù hợp với mối quan hệ\n• Mở đầu: Nêu lý do viết email\n• Nội dung: Ngắn gọn, dễ hiểu\n• Kết thúc: Lời cảm ơn, chữ ký",
+                    templates: "📋 Mẫu email thông dụng:\n• Email xin việc: Chuyên nghiệp, nêu rõ năng lực\n• Email báo cáo: Có số liệu, kết luận rõ ràng\n• Email phản hồi: Nhanh chóng, giải quyết vấn đề\n• Email cảm ơn: Chân thành, cụ thể",
+                    tips: "💡 Mẹo viết email hiệu quả:\n• Viết ngắn gọn, đi thẳng vào vấn đề\n• Sử dụng ngôn ngữ lịch sự, chuyên nghiệp\n• Kiểm tra kỹ trước khi gửi\n• Trả lời trong vòng 24h\n• Sử dụng CC/BCC hợp lý"
+                }
+            },
+            planning: {
+                basic: "Dạ, về lập kế hoạch công việc hiệu quả, tôi sẽ hướng dẫn bạn phương pháp khoa học ạ.",
+                detailed: {
+                    priority: "🎯 Phân loại ưu tiên:\n• Quan trọng & Khẩn cấp: Làm ngay\n• Quan trọng & Không khẩn cấp: Lên lịch\n• Không quan trọng & Khẩn cấp: Ủy quyền\n• Không quan trọng & Không khẩn cấp: Loại bỏ",
+                    tools: "🛠️ Công cụ lập kế hoạch:\n• Trello: Quản lý dự án trực quan\n• Asana: Theo dõi tiến độ chi tiết\n• Google Calendar: Lên lịch cuộc họp\n• Notion: Ghi chép và tổ chức\n• Microsoft To Do: Danh sách công việc",
+                    techniques: "📊 Kỹ thuật lập kế hoạch:\n• Pomodoro: Làm việc 25 phút, nghỉ 5 phút\n• Time blocking: Chia thời gian theo khối\n• Getting Things Done (GTD): Hệ thống quản lý công việc\n• Eisenhower Matrix: Ma trận ưu tiên"
+                }
+            },
+            report: {
+                basic: "Dạ, về tạo báo cáo chuyên nghiệp, tôi sẽ hướng dẫn bạn cấu trúc và phương pháp ạ.",
+                detailed: {
+                    structure: "📊 Cấu trúc báo cáo chuẩn:\n• Tóm tắt điều hành (Executive Summary)\n• Mục lục (Table of Contents)\n• Giới thiệu (Introduction)\n• Phương pháp (Methodology)\n• Kết quả (Results)\n• Phân tích (Analysis)\n• Kết luận và đề xuất (Conclusion & Recommendations)",
+                    data: "📈 Xử lý dữ liệu:\n• Thu thập dữ liệu chính xác\n• Phân tích thống kê cơ bản\n• Tạo biểu đồ, đồ thị trực quan\n• So sánh với mục tiêu, kỳ trước\n• Đưa ra insights có giá trị",
+                    presentation: "🎨 Trình bày báo cáo:\n• Sử dụng template chuyên nghiệp\n• Màu sắc nhất quán, dễ đọc\n• Font chữ rõ ràng, kích thước phù hợp\n• Biểu đồ, hình ảnh minh họa\n• Đánh số trang, mục lục"
+                }
+            },
+            calendar: {
+                basic: "Dạ, về quản lý lịch biểu hiệu quả, tôi sẽ hướng dẫn bạn các phương pháp tối ưu ạ.",
+                detailed: {
+                    organization: "📅 Tổ chức lịch biểu:\n• Lên lịch cuộc họp vào giờ cố định\n• Dành thời gian cho công việc quan trọng\n• Đặt buffer time giữa các cuộc họp\n• Lên lịch nghỉ ngơi, ăn trưa\n• Review lịch vào cuối tuần",
+                    meetings: "🤝 Quản lý cuộc họp:\n• Gửi agenda trước 24h\n• Đặt thời gian bắt đầu và kết thúc rõ ràng\n• Ghi chép biên bản cuộc họp\n• Gửi follow-up email sau cuộc họp\n• Theo dõi action items",
+                    tools: "🛠️ Công cụ quản lý lịch:\n• Google Calendar: Đồng bộ đa thiết bị\n• Outlook Calendar: Tích hợp với email\n• Calendly: Lên lịch tự động\n• Microsoft Teams: Lên lịch cuộc họp\n• Zoom: Lên lịch video call"
+                }
+            },
+            tools: {
+                basic: "Dạ, về các công cụ văn phòng hữu ích, tôi sẽ giới thiệu những công cụ phổ biến và hiệu quả ạ.",
+                detailed: {
+                    productivity: "⚡ Công cụ tăng năng suất:\n• Notion: Ghi chép, quản lý dự án\n• Slack: Giao tiếp nhóm\n• Zoom: Họp trực tuyến\n• Canva: Thiết kế đồ họa\n• Grammarly: Kiểm tra ngữ pháp",
+                    office: "📄 Bộ công cụ văn phòng:\n• Microsoft Office 365: Word, Excel, PowerPoint\n• Google Workspace: Docs, Sheets, Slides\n• LibreOffice: Miễn phí, mã nguồn mở\n• WPS Office: Tương thích tốt\n• Apple iWork: Cho Mac, iOS",
+                    automation: "🤖 Tự động hóa công việc:\n• Zapier: Kết nối các ứng dụng\n• IFTTT: Tự động hóa đơn giản\n• Microsoft Power Automate: Tích hợp Office\n• Google Apps Script: Tự động hóa Google Workspace\n• Python: Tự động hóa nâng cao"
+                }
+            },
+            time: {
+                basic: "Dạ, về quản lý thời gian hiệu quả, tôi sẽ chia sẻ các phương pháp đã được chứng minh ạ.",
+                detailed: {
+                    techniques: "⏰ Kỹ thuật quản lý thời gian:\n• Pomodoro Technique: 25 phút làm việc, 5 phút nghỉ\n• Time Blocking: Chia thời gian thành các khối\n• 80/20 Rule: Tập trung vào 20% công việc quan trọng\n• Batch Processing: Nhóm các công việc tương tự\n• Two-Minute Rule: Làm ngay việc dưới 2 phút",
+                    habits: "🔄 Thói quen tốt:\n• Lên lịch buổi tối cho ngày mai\n• Ưu tiên 3 việc quan trọng nhất\n• Tắt thông báo khi cần tập trung\n• Nghỉ ngơi đều đặn\n• Review và điều chỉnh hàng tuần",
+                    distractions: "🚫 Xử lý phiền nhiễu:\n• Tắt thông báo điện thoại\n• Sử dụng chế độ Focus Mode\n• Đặt thời gian check email\n• Tạo môi trường làm việc yên tĩnh\n• Sử dụng ứng dụng chặn website"
+                }
+            }
+        };
+
+        // Smart suggestions
+        const smartSuggestions = [
+            { text: 'Hướng dẫn viết email chuyên nghiệp', icon: '📧' },
+            { text: 'Cách lập kế hoạch công việc hiệu quả', icon: '📋' },
+            { text: 'Tạo báo cáo tuần như thế nào?', icon: '📊' },
+            { text: 'Quản lý thời gian tốt hơn', icon: '⏰' },
+            { text: 'Công cụ văn phòng hữu ích', icon: '🛠️' },
+            { text: 'Tổ chức cuộc họp hiệu quả', icon: '🤝' },
+            { text: 'Xử lý email nhanh chóng', icon: '⚡' },
+            { text: 'Tạo template văn bản', icon: '📝' }
+        ];
+
+        useEffect(() => {
+            // Welcome message with smart suggestions
+            setTimeout(() => {
+                addMessage(getRandomResponse(officeResponses.greeting), false, smartSuggestions);
+            }, 1000);
+        }, []);
+
+        const addMessage = (text, isUser, suggestions = []) => {
+            const messagesDiv = document.getElementById('messages');
+            const messageBubble = document.createElement('div');
+            messageBubble.classList.add('message-bubble', 'p-4', 'rounded-2xl', 'fade-in', 'max-w-xs', 'md:max-w-md');
+
+            const senderIcon = document.createElement('div');
+            senderIcon.classList.add('w-10', 'h-10', 'rounded-full', 'bg-gray-200', 'flex-shrink-0');
+            const senderImg = document.createElement('img');
+            senderImg.classList.add('w-10', 'h-10', 'rounded-full');
+
+            const messageContent = document.createElement('div');
+            messageContent.innerHTML = text.replace(/\n/g, '<br>');
+
+            if (isUser) {
+                messageBubble.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-purple-600', 'text-white', 'self-end');
+                senderImg.src = userProfile.avatar;
+                const messageContainer = document.createElement('div');
+                messageContainer.classList.add('flex', 'items-end', 'justify-end', 'space-x-3');
+                messageContainer.appendChild(messageContent);
+                messageContainer.appendChild(senderIcon);
+                senderIcon.appendChild(senderImg);
+                messageBubble.appendChild(messageContainer);
+            } else {
+                messageBubble.classList.add('bg-white', 'text-gray-800', 'self-start', 'shadow-lg');
+                senderImg.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM2NjdFRUE7c3RvcC1vcGFjaXR5OjEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNzY0QkEyO3N0b3Atb3BhY2l0eToxIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+';
+                const messageContainer = document.createElement('div');
+                messageContainer.classList.add('flex', 'items-end', 'space-x-3');
+                senderIcon.appendChild(senderImg);
+                messageContainer.appendChild(senderIcon);
+                messageContainer.appendChild(messageContent);
+                messageBubble.appendChild(messageContainer);
+            }
+            
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('flex', isUser ? 'justify-end' : 'justify-start');
+            wrapper.appendChild(messageBubble);
+
+            messagesDiv.appendChild(wrapper);
+
+            // Add suggestions if provided
+            if (suggestions.length > 0) {
+                const suggestionsContainer = document.createElement('div');
+                suggestionsContainer.classList.add('flex', 'flex-wrap', 'gap-2', 'mt-3', 'justify-start', 'pl-14');
+
+                suggestions.forEach(suggestion => {
+                    const button = document.createElement('button');
+                    button.classList.add('suggestion-chip', 'bg-gradient-to-r', 'from-blue-100', 'to-purple-100', 'text-blue-800', 'px-4', 'py-2', 'rounded-full', 'text-sm', 'hover:from-blue-200', 'hover:to-purple-200', 'transition-all', 'duration-300', 'shadow-md');
+                    button.innerHTML = `${suggestion.icon} ${suggestion.text}`;
+                    button.onclick = () => handleSuggestionClick(suggestion.text);
+                    suggestionsContainer.appendChild(button);
+                });
+
+                messagesDiv.appendChild(suggestionsContainer);
+            }
+
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        };
+
+        const handleSuggestionClick = (text) => {
+            const messageInput = document.getElementById('messageInput');
+            messageInput.value = text;
+            sendMessage();
+        };
+
+        const sendMessage = () => {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+
+            if (message && !isTyping) {
+                addMessage(message, true);
+                messageInput.value = '';
+                
+                document.getElementById('sendButton').disabled = true;
+
+                setTimeout(() => {
+                    isTyping = true;
+                    addTypingIndicator();
+                }, 500);
+
+                setTimeout(() => {
+                    isTyping = false;
+                    removeTypingIndicator();
+                    const aiResponse = generateResponse(message);
+                    addMessage(aiResponse, false);
+                    
+                    document.getElementById('sendButton').disabled = false;
+                }, 2000 + Math.random() * 1000);
+            }
+        };
+
+        const addTypingIndicator = () => {
+            const messagesDiv = document.getElementById('messages');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.id = 'typingIndicator';
+            typingIndicator.classList.add('flex', 'items-center', 'space-x-2', 'self-start', 'pl-14', 'py-2');
+            typingIndicator.innerHTML = `
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.4s;"></div>
+            `;
+            messagesDiv.appendChild(typingIndicator);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        };
+
+        const removeTypingIndicator = () => {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        };
+
+        const handleKeyPress = (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        };
+
+        const getRandomResponse = (responses) => {
+            return responses[Math.floor(Math.random() * responses.length)];
+        };
+        
+        const generateResponse = (userInput) => {
+            userInput = userInput.toLowerCase();
+
+            // Keyword matching
+            if (userInput.includes('email') || userInput.includes('thư')) {
+                return officeResponses.email.detailed.structure + '\n\n' + officeResponses.email.detailed.tips;
+            }
+            if (userInput.includes('kế hoạch') || userInput.includes('lập kế hoạch')) {
+                return officeResponses.planning.detailed.priority + '\n\n' + officeResponses.planning.detailed.tools;
+            }
+            if (userInput.includes('báo cáo') || userInput.includes('report')) {
+                return officeResponses.report.detailed.structure + '\n\n' + officeResponses.report.detailed.data;
+            }
+            if (userInput.includes('lịch') || userInput.includes('calendar')) {
+                return officeResponses.calendar.detailed.organization + '\n\n' + officeResponses.calendar.detailed.meetings;
+            }
+            if (userInput.includes('công cụ') || userInput.includes('tool')) {
+                return officeResponses.tools.detailed.productivity + '\n\n' + officeResponses.tools.detailed.office;
+            }
+            if (userInput.includes('thời gian') || userInput.includes('time')) {
+                return officeResponses.time.detailed.techniques + '\n\n' + officeResponses.time.detailed.habits;
+            }
+            if (userInput.includes('văn bản') || userInput.includes('document')) {
+                return officeResponses.document.detailed.structure + '\n\n' + officeResponses.document.detailed.formatting;
+            }
+
+            // Fallback response
+            const randomFollowUp = getRandomResponse(officeResponses.followUpQuestions);
+            return `Tôi chưa hiểu rõ ý của bạn. Bạn có thể hỏi về: "${randomFollowUp}" không?`;
+        };
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                addMessage(getRandomResponse(officeResponses.greeting), false, smartSuggestions);
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
