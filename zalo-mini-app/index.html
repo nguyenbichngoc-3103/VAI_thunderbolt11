@@ -80,7 +80,7 @@
             <div class="text-center mb-8 fade-in">
                 <div class="bg-white bg-opacity-30 p-6 rounded-3xl mb-6 shadow-lg">
                     <div class="bg-white p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-md">
-                        <img src="boost.png" alt="V-AI Logo" class="w-20 h-20">
+                        <img src="boost.png" alt="V-AI Logo" class="min-w-20 min-h-20">
                     </div>
                     <h1 class="text-3xl font-bold text-gray-800 mb-3">V-AI</h1>
                     <p class="text-gray-700 text-lg mb-2">Dễ hiểu - Dễ dùng - Dễ ứng dụng</p>
@@ -88,159 +88,119 @@
             </div>
 
             <!-- Career Cards -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Nông dân -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('farmer')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-green-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="leaf" class="w-8 h-8 text-green-600"></i>
+            <div class="grid grid-cols-1 gap-6 w-full max-w-4xl mx-auto">
+                <!-- Row 1 -->
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- Nông dân -->
+                    <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('farmer')">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-green-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="leaf" class="w-10 h-10 text-green-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nông dân</h3>
+                            <p class="text-gray-500 text-sm mb-4">Thời tiết, canh tác, sâu bệnh</p>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Nông dân</h3>
-                            <p class="text-gray-600">Thời tiết, canh tác, sâu bệnh</p>
-                        </div>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Dự báo thời tiết nông nghiệp</li>
-                            <li>• Kỹ thuật canh tác hiện đại</li>
-                            <li>• Phòng trừ sâu bệnh</li>
-                            <li>• Quản lý năng suất cây trồng</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Doanh nhân -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('business')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-blue-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="briefcase" class="w-8 h-8 text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Doanh nhân</h3>
-                            <p class="text-gray-600">Kinh doanh, marketing, quản lý</p>
+                        <div class="bg-green-50 p-4 rounded-xl w-full">
+                            <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 text-left">
+                                <li>• Dự báo thời tiết</li>
+                                <li>• Kỹ thuật canh tác</li>
+                                <li>• Phòng trừ sâu bệnh</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="bg-blue-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Chiến lược kinh doanh</li>
-                            <li>• Digital marketing</li>
-                            <li>• Quản lý tài chính</li>
-                            <li>• Phân tích thị trường</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Giáo viên -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('teacher')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-purple-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="book-open" class="w-8 h-8 text-purple-600"></i>
+                    <!-- Doanh nhân -->
+                    <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('business')">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-blue-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="briefcase" class="w-10 h-10 text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Doanh nhân</h3>
+                            <p class="text-gray-500 text-sm mb-4">Kinh doanh, marketing</p>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Giáo viên</h3>
-                            <p class="text-gray-600">Giảng dạy, giáo án, quản lý</p>
+                        <div class="bg-blue-50 p-4 rounded-xl w-full">
+                            <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 text-left">
+                                <li>• Chiến lược kinh doanh</li>
+                                <li>• Digital marketing</li>
+                                <li>• Phân tích thị trường</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="bg-purple-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Soạn giáo án hiệu quả</li>
-                            <li>• Phương pháp giảng dạy</li>
-                            <li>• Quản lý lớp học</li>
-                            <li>• Công nghệ giáo dục</li>
-                        </ul>
+                    <!-- Giáo viên -->
+                    <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('teacher')">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-purple-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="book-open" class="w-10 h-10 text-purple-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Giáo viên</h3>
+                            <p class="text-gray-500 text-sm mb-4">Giảng dạy, giáo án</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-xl w-full">
+                            <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 text-left">
+                                <li>• Soạn giáo án</li>
+                                <li>• Phương pháp dạy</li>
+                                <li>• Quản lý lớp học</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Lập trình viên -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('developer')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="code" class="w-8 h-8 text-indigo-600"></i>
+                <!-- Row 2 -->
+                <div class="grid grid-cols-3 gap-6">
+                    <!-- Lập trình viên -->
+                    <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('developer')">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-indigo-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="code" class="w-10 h-10 text-indigo-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Lập trình viên</h3>
+                            <p class="text-gray-500 text-sm mb-4">Coding, debug, framework</p>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Lập trình viên</h3>
-                            <p class="text-gray-600">Coding, debug, framework</p>
-                        </div>
-                    </div>
-                    <div class="bg-indigo-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Best practices coding</li>
-                            <li>• Debug và troubleshooting</li>
-                            <li>• Framework và công nghệ</li>
-                            <li>• Code review và testing</li>
-                        </ul>
-                    </div>
-                </div>
-
-
-                <!-- Luật sư -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('lawyer')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="scale" class="w-8 h-8 text-yellow-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Luật sư</h3>
-                            <p class="text-gray-600">Pháp lý, hợp đồng, tư vấn</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl w-full">
+                            <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 text-left">
+                                <li>• Best practices</li>
+                                <li>• Debug & testing</li>
+                                <li>• Framework & công nghệ</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="bg-yellow-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Tư vấn pháp lý</li>
-                            <li>• Soạn thảo hợp đồng</li>
-                            <li>• Thủ tục pháp lý</li>
-                            <li>• Nghiên cứu luật</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Saler (người bán hàng) -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('saler')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-orange-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="shopping-bag" class="w-8 h-8 text-orange-600"></i>
+                    <!-- Nhân viên bán hàng -->
+                    <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('sales')">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-orange-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="shopping-cart" class="w-10 h-10 text-orange-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nhân viên bán hàng</h3>
+                            <p class="text-gray-500 text-sm mb-4">Tư vấn, CSKH, sales</p>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Saler</h3>
-                            <p class="text-gray-600">Bán hàng, marketing, chăm sóc khách hàng</p>
+                        <div class="bg-orange-50 p-4 rounded-xl w-full">
+                            <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 text-left">
+                                <li>• Kỹ năng bán hàng</li>
+                                <li>• Chăm sóc khách hàng</li>
+                                <li>• Quản lý đơn hàng</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="bg-orange-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Kỹ năng bán hàng hiệu quả</li>
-                            <li>• Chăm sóc khách hàng</li>
-                            <li>• Marketing và quảng cáo</li>
-                            <li>• Quản lý đơn hàng</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Nhân viên văn phòng -->
-                <div class="career-card bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('office_worker')">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-teal-100 p-4 rounded-full w-16 h-16 flex items-center justify-center mr-4">
-                            <i data-lucide="clipboard-list" class="w-8 h-8 text-teal-600"></i>
+                    <!-- Nhân viên văn phòng -->
+                    <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('office')">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-teal-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="building" class="w-10 h-10 text-teal-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nhân viên văn phòng</h3>
+                            <p class="text-gray-500 text-sm mb-4">Hành chính, quản lý</p>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Nhân viên văn phòng</h3>
-                            <p class="text-gray-600">Công việc, báo cáo, quản lý</p>
+                        <div class="bg-teal-50 p-4 rounded-xl w-full">
+                            <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 text-left">
+                                <li>• Quản lý tài liệu</li>
+                                <li>• Kế hoạch công việc</li>
+                                <li>• Công cụ văn phòng</li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="bg-teal-50 p-4 rounded-xl">
-                        <p class="text-sm text-gray-700 mb-2"><strong>Hỗ trợ:</strong></p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Soạn thảo văn bản, email</li>
-                            <li>• Lập kế hoạch công việc</li>
-                            <li>• Tạo báo cáo, thống kê</li>
-                            <li>• Quản lý lịch biểu</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -418,16 +378,6 @@
                         organic: "🌱 Diệt cỏ hữu cơ:\n• Muối: Rải muối vào gốc cỏ\n• Giấm: Phun giấm trắng 5%\n• Nước sôi: Đổ nước sôi vào gốc\n• Che phủ: Dùng bạt, rơm rạ",
                         prevention: "🛡️ Phòng ngừa cỏ:\n• Trồng dày: Giảm ánh sáng đến đất\n• Che phủ: Rơm rạ, bạt nilon\n• Luân canh: Thay đổi cây trồng\n• Vệ sinh: Dọn sạch cỏ quanh vườn"
                     }
-                },
-                office_worker: {
-                    basic: "Dạ, về công việc nhân viên văn phòng, cháu sẽ hướng dẫn chú/cô các kỹ năng cần thiết ạ.",
-                    detailed: {
-                        document: "📝 Soạn thảo văn bản:\n• Sử dụng công cụ soạn thảo văn bản\n• Làm quen với các định dạng văn bản\n• Kiểm tra chính tả, ngữ pháp\n• Định dạng văn bản theo yêu cầu",
-                        email: "📧 Email:\n• Viết email chuyên nghiệp\n• Sử dụng ngôn ngữ lịch sự\n• Đính kèm tệp tin, hình ảnh\n• Trả lời email kịp thời",
-                        schedule: "📅 Lập kế hoạch công việc:\n• Xác định mục tiêu công việc\n• Phân tích công việc cần làm\n• Ưu tiên công việc\n• Lên lịch công việc hợp lý",
-                        report: "📊 Tạo báo cáo, thống kê:\n• Sử dụng công cụ thống kê\n• Biểu đồ, bảng số liệu\n• Phân tích dữ liệu\n• Trình bày kết quả rõ ràng",
-                        calendar: "📅 Quản lý lịch biểu:\n• Sử dụng công cụ lịch biểu\n• Lên lịch họp, cuộc hẹn\n• Quản lý thời gian hiệu quả\n• Cập nhật lịch biểu định kỳ"
-                    }
                 }
             },
             business: {
@@ -571,55 +521,58 @@
                     }
                 }
             },
-            lawyer: {
-                title: "Trợ lý Luật sư",
+            sales: {
+                title: "Nhân viên bán hàng",
                 greeting: [
-                    "Chào bạn! Tôi là V AI, trợ lý thông minh cho luật sư. Tôi có thể giúp bạn với tư vấn pháp lý, soạn thảo văn bản. Bạn cần tôi hỗ trợ gì hôm nay?",
-                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc pháp lý. Bạn có thể hỏi tôi về luật, hợp đồng, hoặc thủ tục pháp lý."
+                    "Chào bạn! Tôi là V-AI, trợ lý thông minh cho nhân viên bán hàng. Tôi có thể giúp bạn với kỹ năng bán hàng, chăm sóc khách hàng, và quản lý đơn hàng. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc bán hàng. Bạn có thể hỏi tôi về kỹ năng bán hàng, cách chăm sóc khách hàng, hoặc quản lý đơn hàng."
                 ],
-                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Lĩnh vực pháp lý bạn chuyên?\n• Làm việc độc lập hay công ty?\n• Loại vụ án thường xử lý?",
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Bạn đã có kinh nghiệm bán hàng chưa?\n• Bạn thường bán hàng ở đâu?\n• Bạn có thể chăm sóc khách hàng như thế nào?",
                 followUpQuestions: [
-                    "Bạn chuyên về lĩnh vực pháp lý nào?",
-                    "Bạn làm việc độc lập hay công ty luật?",
-                    "Bạn gặp khó khăn gì trong tư vấn?",
-                    "Bạn muốn mở rộng chuyên môn như thế nào?",
-                    "Loại vụ án bạn thường xử lý là gì?"
+                    "Bạn đã có kinh nghiệm bán hàng chưa?",
+                    "Bạn thường bán hàng ở đâu?",
+                    "Bạn có thể chăm sóc khách hàng như thế nào?",
+                    "Bạn muốn tăng doanh số bán hàng như thế nào?",
+                    "Bạn có thể quản lý đơn hàng như thế nào?"
                 ],
-                legal: [
-                    "Tư vấn pháp lý: 1) Phân tích tình huống, 2) Nghiên cứu luật liên quan, 3) Đưa ra khuyến nghị pháp lý.",
-                    "Soạn thảo văn bản: Hợp đồng, đơn từ, và các văn bản pháp lý khác."
+                salesSkills: [
+                    "Kỹ năng bán hàng: 1) Hiểu rõ nhu cầu khách hàng, 2) Tư vấn sản phẩm hiệu quả, 3) Xây dựng mối quan hệ tốt với khách hàng, 4) Quản lý đơn hàng hiệu quả.",
+                    "Kỹ năng chăm sóc khách hàng: 1) Lắng nghe tích cực, 2) Phản hồi nhanh chóng, 3) Tạo cảm giác thoải mái và tin cậy, 4) Xây dựng mối quan hệ dài hạn với khách hàng."
                 ],
-                contract: [
-                    "Soạn thảo hợp đồng: 1) Xác định các bên, 2) Điều khoản và điều kiện, 3) Quyền và nghĩa vụ, 4) Giải quyết tranh chấp.",
-                    "Các loại hợp đồng phổ biến: Hợp đồng lao động, hợp đồng mua bán, hợp đồng thuê mướn."
+                marketing: [
+                    "Marketing sản phẩm: 1) Tạo nội dung marketing hiệu quả, 2) Sử dụng các kênh marketing hiệu quả, 3) Tạo sự hấp dẫn và khác biệt cho sản phẩm, 4) Quản lý chi phí marketing."
                 ],
-                lawsuit: "⚖️ Khởi kiện tại tòa án:\n• Soạn thảo và nộp đơn khởi kiện\n• Nộp tạm ứng án phí\n• Tham gia các phiên họp và phiên tòa\n• Thi hành án theo bản án/quyết định của Tòa án"
+                orderManagement: [
+                    "Quản lý đơn hàng: 1) Xác nhận đơn hàng nhanh chóng, 2) Phân tích nhu cầu khách hàng, 3) Tạo kế hoạch phân phối hàng hóa, 4) Quản lý kho hàng hiệu quả."
+                ]
             },
-            office_worker: {
-                title: "Trợ lý Văn phòng",
+            office: {
+                title: "Nhân viên văn phòng",
                 greeting: [
-                    "Chào bạn! Tôi là V-AI, trợ lý văn phòng thông minh. Tôi có thể giúp bạn với các công việc văn phòng, báo cáo và quản lý. Bạn cần tôi hỗ trợ gì hôm nay?",
-                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc văn phòng. Bạn có thể hỏi tôi về soạn thảo văn bản, quản lý lịch biểu, hoặc tạo báo cáo."
+                    "Chào bạn! Tôi là V-AI, trợ lý thông minh cho nhân viên văn phòng. Tôi có thể giúp bạn với quản lý tài liệu, lập kế hoạch công việc, và giao tiếp nội bộ. Bạn cần tôi hỗ trợ gì hôm nay?",
+                    "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc văn phòng. Bạn có thể hỏi tôi về cách quản lý tài liệu, lập kế hoạch công việc, hoặc công cụ văn phòng."
                 ],
-                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Công việc chính của bạn là gì?\n• Bạn thường gặp khó khăn gì trong công việc?\n• Bạn muốn tôi giúp gì cụ thể?",
+                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Bạn đã có kinh nghiệm quản lý tài liệu chưa?\n• Bạn thường làm việc ở đâu?\n• Bạn có thể quản lý công việc như thế nào?",
                 followUpQuestions: [
-                    "Làm thế nào để viết email chuyên nghiệp?",
-                    "Cách lập kế hoạch công việc hiệu quả?",
-                    "Giúp tôi tạo một báo cáo tuần.",
-                    "Làm sao để quản lý thời gian tốt hơn?",
-                    "Các công cụ văn phòng hữu ích là gì?"
+                    "Bạn đã có kinh nghiệm quản lý tài liệu chưa?",
+                    "Bạn thường làm việc ở đâu?",
+                    "Bạn có thể quản lý công việc như thế nào?",
+                    "Bạn muốn tăng hiệu suất làm việc như thế nào?",
+                    "Bạn có thể giao tiếp nội bộ như thế nào?"
                 ],
-                document: [
-                    "Để soạn thảo văn bản chuyên nghiệp: 1) Sử dụng tiêu đề rõ ràng, 2) Chia nhỏ các đoạn văn, 3) Kiểm tra lỗi chính tả và ngữ pháp.",
-                    "Mẫu email chuyên nghiệp: Bắt đầu bằng lời chào, trình bày rõ mục đích, kết thúc bằng lời cảm ơn và chữ ký."
+                documentManagement: [
+                    "Quản lý tài liệu: 1) Sắp xếp và phân loại tài liệu hiệu quả, 2) Sử dụng các công cụ quản lý tài liệu, 3) Bảo mật thông tin quan trọng, 4) Tối ưu hóa quy trình tìm kiếm tài liệu.",
+                    "Lập kế hoạch công việc: 1) Phân tích nhu cầu công việc, 2) Lập kế hoạch chi tiết và thực hiện, 3) Đánh giá tiến độ và điều chỉnh, 4) Tạo môi trường làm việc hiệu quả."
                 ],
-                planning: [
-                    "Để lập kế hoạch công việc hiệu quả: 1) Liệt kê các công việc cần làm, 2) Sắp xếp theo thứ tự ưu tiên, 3) Đặt thời gian hoàn thành cho mỗi công việc.",
-                    "Sử dụng các công cụ như Trello, Asana, hoặc Google Calendar để quản lý công việc và lịch biểu."
+                communication: [
+                    "Giao tiếp nội bộ: 1) Lắng nghe tích cực, 2) Phản hồi kịp thời, 3) Tạo môi trường làm việc thân thiện, 4) Xây dựng mối quan hệ lâu dài với đồng nghiệp."
+                ],
+                officeTools: [
+                    "Công cụ văn phòng: 1) Sử dụng các phần mềm văn phòng hiệu quả, 2) Tối ưu hóa quy trình làm việc, 3) Tạo môi trường làm việc hiệu quả, 4) Quản lý thông tin và tài liệu."
                 ]
             },
             other: {
-                title: "Trợ lý AI đa năng",
+                title: "Trợ lý AI",
                 greeting: [
                     "Chào bạn! Tôi là V AI, trợ lý AI thông minh. Tôi có thể giúp bạn với nhiều lĩnh vực khác nhau. Bạn cần tôi hỗ trợ gì hôm nay?",
                     "Xin chào! Tôi sẵn sàng hỗ trợ bạn trong công việc. Bạn có thể hỏi tôi về bất kỳ vấn đề nào."
@@ -636,311 +589,1448 @@
                     "Tôi có thể hỗ trợ bạn với: 1) Tìm kiếm thông tin, 2) Phân tích dữ liệu, 3) Tư vấn chung, 4) Hỗ trợ công việc.",
                     "Hãy cho tôi biết bạn làm việc trong lĩnh vực nào để tôi có thể hỗ trợ tốt hơn."
                 ]
-            },
-            saler: {
-                title: "Saler AI",
-                greeting: [
-                    "Chào bạn! Tôi là Saler AI, chuyên gia bán hàng và marketing đây! 💼\n\nTôi có thể giúp bạn với:\n• Kỹ thuật bán hàng hiệu quả\n• Chăm sóc khách hàng VIP\n• Marketing online & social media\n• Quản lý đơn hàng & doanh số\n• Xử lý phản đối khách hàng\n• Tăng doanh số bán hàng\n\nBạn cần tôi hỗ trợ gì hôm nay?",
-                    "Xin chào! Tôi Saler AI đây! Sẵn sàng hỗ trợ bạn trong lĩnh vực bán hàng và marketing. Bạn có thể hỏi tôi về kỹ thuật bán hàng, chăm sóc khách hàng, hoặc bất kỳ vấn đề nào khác nhé!"
-                ],
-                askDetail: "Để tôi có thể hỗ trợ tốt hơn, bạn có thể cho tôi biết:\n• Bạn bán sản phẩm/dịch vụ gì?\n• Đối tượng khách hàng mục tiêu?\n• Bạn đã làm sales được bao lâu?",
-                followUpQuestions: [
-                    "Bạn bán sản phẩm/dịch vụ gì?",
-                    "Đối tượng khách hàng mục tiêu của bạn?",
-                    "Bạn gặp khó khăn gì trong bán hàng?",
-                    "Bạn muốn tăng doanh số như thế nào?",
-                    "Kênh bán hàng chính của bạn là gì?"
-                ],
-                sales: [
-                    "Kỹ năng bán hàng: 1) Lắng nghe nhu cầu khách hàng, 2) Giới thiệu sản phẩm phù hợp, 3) Xử lý phản đối, 4) Kết thúc bán hàng.",
-                    "Các kỹ thuật bán hàng: SPIN Selling, Solution Selling, và Consultative Selling."
-                ],
-                customer: [
-                    "Chăm sóc khách hàng: 1) Theo dõi sau bán hàng, 2) Giải quyết khiếu nại, 3) Xây dựng mối quan hệ lâu dài.",
-                    "CRM và quản lý khách hàng: Hệ thống quản lý thông tin khách hàng hiệu quả."
-                ],
-                saler: [
-                    '💰 Kỹ thuật bán hàng hiệu quả',
-                    '🎯 Chăm sóc khách hàng VIP',
-                    '📱 Marketing online & social media',
-                    '📊 Quản lý đơn hàng & doanh số',
-                    '🤝 Xử lý phản đối khách hàng',
-                    '📈 Tăng doanh số bán hàng',
-                    '💼 Kỹ năng thuyết trình sản phẩm',
-                    '📋 Quản lý danh sách khách hàng',
-                    '🎨 Chiến lược marketing sáng tạo'
-                ]
             }
         };
 
-        // Get user info from Zalo
-        // This is a placeholder. In a real Zalo Mini App, you'd use Zalo's JS SDK.
-        function getUserInfo() {
-            // Check if user info is in localStorage
-            if (localStorage.getItem('userProfile')) {
-                userProfile = JSON.parse(localStorage.getItem('userProfile'));
-                console.log('User profile loaded from localStorage:', userProfile);
-                return;
-            }
-
-            // Mock user info if not available
-            userProfile = {
-                id: '123456789',
-                name: 'Người dùng Zalo',
-                avatar: 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'
-            };
-            console.log('Mock user profile created:', userProfile);
-        }
-
         function selectCareer(career) {
-            console.log('Career selected:', career); // Debug log
+            console.log('selectCareer called with:', career); // Debug log
+            
             currentCareer = career;
-            localStorage.setItem('selectedCareer', career);
-
+            console.log('currentCareer set to:', currentCareer); // Debug log
+            
             document.getElementById('careerSelection').classList.add('hidden');
             document.getElementById('mainApp').classList.remove('hidden');
-
-            const careerData = careerResponses[career] || careerResponses.other;
-            document.getElementById('careerTitle').textContent = careerData.title;
-            document.getElementById('userInfo').textContent = `Chào mừng, ${userProfile.name}!`;
-
-            // Clear previous messages and add a new welcome message
-            const messagesDiv = document.getElementById('messages');
-            messagesDiv.innerHTML = ''; // Clear existing messages
-            addMessage(getRandomResponse(careerData.greeting), 'ai');
-
-            // Ask for more details if available for the career
-            if (careerData.askDetail) {
+            
+            // Update career title
+            const careerTitle = document.getElementById('careerTitle');
+            careerTitle.textContent = careerResponses[career].title;
+            
+            console.log('Career selection UI updated'); // Debug log
+            
+            // Send welcome message and ask for name
+            setTimeout(() => {
+                const welcomeMsg = careerResponses[career].greeting[Math.floor(Math.random() * careerResponses[career].greeting.length)];
+                console.log('Adding welcome message:', welcomeMsg); // Debug log
+                addMessage(welcomeMsg, false);
                 setTimeout(() => {
-                    askForMoreDetails();
-                }, 1500);
-            }
+                    // Check if name already exists
+                    if (!userProfile.name) {
+                        console.log('No name found, asking for name'); // Debug log
+                        askForName();
+                    } else {
+                        console.log('Name found:', userProfile.name); // Debug log
+                        const userInfo = document.getElementById('userInfo');
+                        if(userInfo) {
+                           userInfo.textContent = `Chào mừng ${userProfile.name}!`;
+                        }
+                        const welcomeBackMsg = `Chào mừng ${userProfile.name} quay trở lại!`;
+                        addMessage(welcomeBackMsg, false);
+                        setTimeout(() => {
+                            console.log('Showing suggestion buttons'); // Debug log
+                            showSuggestionButtons();
+                        }, 500);
+                    }
+                }, 1000);
+            }, 500);
         }
 
-        function askForMoreDetails() {
-            const careerData = careerResponses[currentCareer];
-            if (!careerData || !careerData.askDetail) return;
+        function askForName() {
+            const messagesContainer = document.getElementById('messages');
+            
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'flex justify-start';
+            const questionBubble = document.createElement('div');
+            questionBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-blue-50 border border-blue-200';
+            questionBubble.innerHTML = `<p class="text-sm text-gray-700 font-medium">Để tiện xưng hô, bạn cho tôi biết tên của bạn nhé? 😊</p>`;
+            questionDiv.appendChild(questionBubble);
+            messagesContainer.appendChild(questionDiv);
 
-            // Simple ask for details
-            // addMessage(careerData.askDetail, 'ai');
+            const formDiv = document.createElement('div');
+            formDiv.className = 'flex justify-start w-full';
+            formDiv.id = 'name-form-container';
+            
+            const formBubble = document.createElement('div');
+            formBubble.className = 'message-bubble w-full px-4 py-3 rounded-2xl shadow-sm bg-green-50 border border-green-200';
+            
+            const form = document.createElement('form');
+            form.className = 'w-full flex items-center gap-2';
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                const nameInput = form.querySelector('input');
+                const name = nameInput.value.trim();
+                if (name) {
+                    submitName(name);
+                }
+            };
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'w-full flex-grow p-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
+            input.placeholder = 'Nhập tên của bạn...';
+            input.required = true;
+            
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.className = 'px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-semibold hover:bg-blue-600';
+            submitButton.textContent = 'Gửi';
+            
+            form.appendChild(input);
+            form.appendChild(submitButton);
+            formBubble.appendChild(form);
+            formDiv.appendChild(formBubble);
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Ask for details with suggestion chips
-            const suggestions = (careerData.followUpQuestions || []).map(q => ({ text: q, isQuestion: true }));
-            addMessageWithSuggestions(careerData.askDetail, 'ai', suggestions);
+            setTimeout(() => input.focus(), 100);
+        }
+
+        function submitName(name) {
+            const formContainer = document.getElementById('name-form-container');
+            if(formContainer) formContainer.remove();
+
+            addMessage(name, true);
+
+            userProfile.name = name;
+            localStorage.setItem('userProfile', JSON.stringify(userProfile));
+            
+            const userInfo = document.getElementById('userInfo');
+            if(userInfo) {
+                userInfo.textContent = `Chào mừng ${name}!`;
+            }
+
+            setTimeout(() => {
+                const confirmationMsg = `Rất vui được làm quen, ${name}! 😊`;
+                addMessage(confirmationMsg, false);
+                setTimeout(() => {
+                    showSuggestionButtons();
+                }, 1000);
+            }, 500);
+        }
+
+        function askPersonalInfo(career) {
+            const personalQuestions = getPersonalQuestions(career);
+            const messagesContainer = document.getElementById('messages');
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'flex justify-start';
+            
+            const questionBubble = document.createElement('div');
+            questionBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-blue-50 border border-blue-200';
+            
+            const questionText = document.createElement('p');
+            questionText.className = 'text-sm text-gray-700 mb-3 font-medium';
+            questionText.textContent = `Để cháu có thể tư vấn tốt hơn, ${userProfile.name || 'chú/cô'} hãy cho cháu biết một chút về công việc nhé:`;
+            
+            const listDiv = document.createElement('div');
+            listDiv.className = 'space-y-2 mb-3';
+            
+            personalQuestions.forEach((question, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex items-start text-sm text-gray-600';
+                itemDiv.innerHTML = `
+                    <span class="mr-2 mt-1">${index + 1}.</span>
+                    <span>${question}</span>
+                `;
+                listDiv.appendChild(itemDiv);
+            });
+            
+            const instructionText = document.createElement('p');
+            instructionText.className = 'text-sm text-gray-700 font-medium';
+            instructionText.textContent = 'Chú/cô có thể trả lời từng câu hỏi hoặc mô tả tổng quan về tình hình của mình:';
+            
+            questionBubble.appendChild(questionText);
+            questionBubble.appendChild(listDiv);
+            questionBubble.appendChild(instructionText);
+            questionDiv.appendChild(questionBubble);
+            messagesContainer.appendChild(questionDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Hiển thị form nhập thông tin
+            setTimeout(() => {
+                addPersonalInfoForm();
+            }, 500);
+        }
+
+        function getPersonalQuestions(career) {
+            const questions = {
+                farmer: [
+                    'Chú/cô trồng loại cây gì chính?',
+                    'Diện tích canh tác của chú/cô khoảng bao nhiêu?',
+                    'Chú/cô đã làm nông nghiệp được bao lâu?',
+                    'Vùng miền chú/cô đang canh tác ở đâu?',
+                    'Chú/cô có sử dụng công nghệ hiện đại không?'
+                ],
+                business: [
+                    'Bạn kinh doanh lĩnh vực gì?',
+                    'Quy mô doanh nghiệp của bạn như thế nào?',
+                    'Bạn đã kinh doanh được bao lâu?',
+                    'Thị trường mục tiêu của bạn là gì?',
+                    'Bạn có bao nhiêu nhân viên?'
+                ],
+                teacher: [
+                    'Bạn dạy môn học gì?',
+                    'Bạn dạy cấp học nào?',
+                    'Bạn đã giảng dạy được bao lâu?',
+                    'Sĩ số lớp học trung bình là bao nhiêu?',
+                    'Bạn có sử dụng công nghệ trong giảng dạy không?'
+                ],
+                developer: [
+                    'Bạn chuyên về ngôn ngữ lập trình nào?',
+                    'Bạn làm frontend, backend hay fullstack?',
+                    'Bạn đã lập trình được bao lâu?',
+                    'Bạn đang làm việc ở công ty hay freelancer?',
+                    'Dự án hiện tại bạn đang làm là gì?'
+                ],
+                sales: [
+                    'Bạn đã có kinh nghiệm bán hàng chưa?',
+                    'Bạn thường bán hàng ở đâu?',
+                    'Bạn có thể chăm sóc khách hàng như thế nào?',
+                    'Bạn muốn tăng doanh số bán hàng như thế nào?',
+                    'Bạn có thể quản lý đơn hàng như thế nào?'
+                ],
+                office: [
+                    'Bạn đã có kinh nghiệm quản lý tài liệu chưa?',
+                    'Bạn thường làm việc ở đâu?',
+                    'Bạn có thể quản lý công việc như thế nào?',
+                    'Bạn muốn tăng hiệu suất làm việc như thế nào?',
+                    'Bạn có thể giao tiếp nội bộ như thế nào?'
+                ],
+                other: [
+                    'Bạn làm việc trong lĩnh vực gì?',
+                    'Công việc hiện tại của bạn như thế nào?',
+                    'Bạn đã làm việc được bao lâu?',
+                    'Môi trường làm việc của bạn ra sao?',
+                    'Bạn có mục tiêu nghề nghiệp gì?'
+                ]
+            };
+            
+            return questions[career] || questions.other;
+        }
+
+        function addPersonalInfoForm() {
+            const messagesContainer = document.getElementById('messages');
+            const formDiv = document.createElement('div');
+            formDiv.className = 'flex justify-start';
+            
+            const formBubble = document.createElement('div');
+            formBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-green-50 border border-green-200';
+            
+            const formTitle = document.createElement('p');
+            formTitle.className = 'text-sm text-gray-700 mb-3 font-medium';
+            formTitle.textContent = 'Hãy chia sẻ thông tin về chú/cô:';
+            
+            const form = document.createElement('form');
+            form.className = 'space-y-3';
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                const personalInfo = form.querySelector('textarea').value;
+                if (personalInfo.trim()) {
+                    // Xóa form
+                    formDiv.remove();
+                    
+                    // Thêm tin nhắn của user
+                    addMessage(personalInfo, true);
+                    
+                    // Lưu thông tin cá nhân
+                    userProfile.personalInfo = personalInfo;
+                    localStorage.setItem('userProfile', JSON.stringify(userProfile));
+                    
+                    // AI phản hồi và gợi ý vấn đề
+                    setTimeout(() => {
+                        const response = getPersonalInfoResponse(personalInfo);
+                        addMessage(response, false);
+                        setTimeout(() => {
+                            addSuggestionMessage();
+                        }, 1000);
+                    }, 500);
+                }
+            };
+            
+            const textarea = document.createElement('textarea');
+            textarea.className = 'w-full p-3 border border-gray-300 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent';
+            textarea.placeholder = 'Mô tả thông tin về chú/cô và tình hình hiện tại...';
+            textarea.rows = 4;
+            textarea.required = true;
+            
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.className = 'px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors';
+            submitButton.textContent = 'Gửi thông tin';
+            
+            form.appendChild(textarea);
+            form.appendChild(submitButton);
+            formBubble.appendChild(formTitle);
+            formBubble.appendChild(form);
+            formDiv.appendChild(formBubble);
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Focus vào textarea
+            setTimeout(() => {
+                textarea.focus();
+            }, 100);
+        }
+
+        function getPersonalInfoResponse(personalInfo) {
+            const career = careerResponses[currentCareer];
+            if (!career) return 'Dạ, cảm ơn chú/cô đã chia sẻ thông tin ạ!';
+            
+            let response = `Dạ, cảm ơn ${userProfile.name || 'chú/cô'} đã chia sẻ! Cháu đã hiểu rõ hơn về tình hình của chú/cô ạ. `;
+            
+            // Thêm phản hồi dựa trên nghề nghiệp
+            switch(currentCareer) {
+                case 'farmer':
+                    response += `Dạ, với kinh nghiệm nông nghiệp của chú/cô, cháu có thể đưa ra những tư vấn phù hợp hơn ạ. `;
+                    break;
+                case 'business':
+                    response += `Với tình hình kinh doanh của bạn, tôi sẽ đưa ra chiến lược phù hợp. `;
+                    break;
+                case 'teacher':
+                    response += `Với môi trường giảng dạy của bạn, tôi sẽ gợi ý phương pháp phù hợp. `;
+                    break;
+                case 'developer':
+                    response += `Với stack công nghệ và dự án của bạn, tôi sẽ đưa ra giải pháp tối ưu. `;
+                    break;
+                case 'doctor':
+                    response += `Với chuyên môn và môi trường làm việc của bạn, tôi sẽ đưa ra tư vấn phù hợp. `;
+                    break;
+                case 'lawyer':
+                    response += `Với lĩnh vực pháp lý và kinh nghiệm của bạn, tôi sẽ đưa ra tư vấn chuyên môn. `;
+                    break;
+                default:
+                    response += `Với tình hình công việc của bạn, tôi sẽ đưa ra tư vấn phù hợp. `;
+            }
+            
+            response += `Bây giờ hãy cho tôi biết bạn đang gặp vấn đề gì nhé!`;
+            
+            return response;
+        }
+
+        function addSuggestionMessage() {
+            const career = careerResponses[currentCareer];
+            if (!career) return;
+            
+            const suggestions = getSuggestions(career);
+            const messagesContainer = document.getElementById('messages');
+            const suggestionDiv = document.createElement('div');
+            suggestionDiv.className = 'flex justify-start';
+            
+            const suggestionBubble = document.createElement('div');
+            suggestionBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-yellow-50 border border-yellow-200';
+            
+            const suggestionText = document.createElement('p');
+            suggestionText.className = 'text-sm text-gray-700 mb-3 font-medium';
+            suggestionText.textContent = 'Vài gợi ý về vấn đề của bạn:';
+            
+            const listDiv = document.createElement('div');
+            listDiv.className = 'space-y-2';
+            
+            suggestions.forEach((suggestion, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex items-center text-sm text-gray-600';
+                itemDiv.innerHTML = `
+                    <span class="mr-2">•</span>
+                    <span>${suggestion}</span>
+                `;
+                listDiv.appendChild(itemDiv);
+            });
+            
+            const questionText = document.createElement('p');
+            questionText.className = 'text-sm text-gray-700 mt-3 font-medium';
+            questionText.textContent = 'Bạn đang gặp vấn đề gì? Hãy chọn hoặc tự mô tả:';
+            
+            suggestionBubble.appendChild(suggestionText);
+            suggestionBubble.appendChild(listDiv);
+            suggestionBubble.appendChild(questionText);
+            suggestionDiv.appendChild(suggestionBubble);
+            messagesContainer.appendChild(suggestionDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Hiển thị các vấn đề có thể chọn
+            setTimeout(() => {
+                addFollowUpQuestions();
+            }, 500);
+        }
+
+        function getSuggestions(career) {
+            const suggestions = {
+                farmer: [
+                    '🌾 Trồng lúa miền Tây',
+                    '🌶️ Bệnh cây ớt vàng lá',
+                    '🐔 Gà thả vườn bị bệnh',
+                    '🍈 Kỹ thuật trồng dưa lưới',
+                    '🌸 Sầu riêng ra hoa bón phân',
+                    '☕ Nhắc bón phân cà phê',
+                    '💰 Cập nhật giá nông sản',
+                    '🌤️ Dự báo thời tiết nông vụ',
+                    '🌿 Kỹ thuật diệt cỏ hiệu quả'
+                ],
+                business: [
+                    '💰 Quản lý tài chính doanh nghiệp',
+                    '📱 Digital Marketing & Social Media',
+                    '👥 Quản lý nhân sự & quy trình',
+                    '📊 Phân tích thị trường & đối thủ',
+                    '📈 Xây dựng kế hoạch kinh doanh',
+                    '🎯 Tối ưu hóa chi phí & hiệu quả',
+                    '🔍 SEO & SEM Marketing',
+                    '📝 Content Marketing & Branding'
+                ],
+                teacher: [
+                    '🎯 Phương pháp giảng dạy hiện đại',
+                    '📋 Quản lý lớp học hiệu quả',
+                    '📝 Thiết kế chương trình giảng dạy',
+                    '💻 Công nghệ trong giáo dục',
+                    '📊 Đánh giá học sinh đa dạng',
+                    '🌱 Tạo môi trường học tập tích cực',
+                    '🔗 Tích hợp liên môn',
+                    '👥 Giao tiếp với phụ huynh'
+                ],
+                developer: [
+                    '⚛️ Frontend Development (React/Vue/Angular)',
+                    '🐍 Backend Development (Python/Java/Node.js)',
+                    '🗄️ Database & API Design',
+                    '🔄 DevOps & CI/CD Pipeline',
+                    '☁️ Cloud Platforms (AWS/Azure/GCP)',
+                    '🔒 Bảo mật ứng dụng',
+                    '🚀 Performance Optimization',
+                    '🧪 Testing & Quality Assurance'
+                ],
+                sales: [
+                    'Kỹ năng bán hàng: 1) Hiểu rõ nhu cầu khách hàng, 2) Tư vấn sản phẩm hiệu quả, 3) Xây dựng mối quan hệ tốt với khách hàng, 4) Quản lý đơn hàng hiệu quả.',
+                    'Kỹ năng chăm sóc khách hàng: 1) Lắng nghe tích cực, 2) Phản hồi nhanh chóng, 3) Tạo cảm giác thoải mái và tin cậy, 4) Xây dựng mối quan hệ dài hạn với khách hàng.',
+                    'Marketing sản phẩm: 1) Tạo nội dung marketing hiệu quả, 2) Sử dụng các kênh marketing hiệu quả, 3) Tạo sự hấp dẫn và khác biệt cho sản phẩm, 4) Quản lý chi phí marketing.',
+                    'Quản lý đơn hàng: 1) Xác nhận đơn hàng nhanh chóng, 2) Phân tích nhu cầu khách hàng, 3) Tạo kế hoạch phân phối hàng hóa, 4) Quản lý kho hàng hiệu quả.'
+                ],
+                office: [
+                    'Quản lý tài liệu: 1) Sắp xếp và phân loại tài liệu hiệu quả, 2) Sử dụng các công cụ quản lý tài liệu, 3) Bảo mật thông tin quan trọng, 4) Tối ưu hóa quy trình tìm kiếm tài liệu.',
+                    'Lập kế hoạch công việc: 1) Phân tích nhu cầu công việc, 2) Lập kế hoạch chi tiết và thực hiện, 3) Đánh giá tiến độ và điều chỉnh, 4) Tạo môi trường làm việc hiệu quả.',
+                    'Giao tiếp nội bộ: 1) Lắng nghe tích cực, 2) Phản hồi kịp thời, 3) Tạo môi trường làm việc thân thiện, 4) Xây dựng mối quan hệ lâu dài với đồng nghiệp.',
+                    'Công cụ văn phòng: 1) Sử dụng các phần mềm văn phòng hiệu quả, 2) Tối ưu hóa quy trình làm việc, 3) Tạo môi trường làm việc hiệu quả, 4) Quản lý thông tin và tài liệu.'
+                ],
+                other: [
+                    'Tìm kiếm & tổng hợp thông tin',
+                    'Lên kế hoạch & quản lý công việc',
+                    'Tư vấn phát triển kỹ năng',
+                    'Brainstorm ý tưởng mới'
+                ]
+            };
+            return suggestions[career] || suggestions.other;
+        }
+
+        function addFollowUpQuestions() {
+            const career = careerResponses[currentCareer];
+            if (!career) return;
+            
+            const suggestions = getSuggestions(career);
+            const messagesContainer = document.getElementById('messages');
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'flex flex-wrap gap-2 mt-3';
+            
+            suggestions.forEach((suggestion, index) => {
+                const button = document.createElement('button');
+                button.className = 'px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm rounded-lg transition-colors duration-200 border border-blue-200';
+                button.textContent = suggestion;
+                button.onclick = () => {
+                    // Xóa các button cũ
+                    const oldButtons = document.querySelectorAll('.flex.flex-wrap.gap-2');
+                    oldButtons.forEach(btn => btn.remove());
+                    
+                    // Thêm tin nhắn của user
+                    addMessage(suggestion, true);
+                    
+                    // AI trả lời trực tiếp
+                    setTimeout(() => {
+                        const response = getDirectAIResponse(currentCareer, suggestion);
+                        addMessage(response, false);
+                    }, 500);
+                };
+                buttonContainer.appendChild(button);
+            });
+            
+            messagesContainer.appendChild(buttonContainer);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getDirectAIResponse(career, problem) {
+            const careerData = careerResponses[career];
+            if (!careerData) return 'Xin lỗi, tôi không thể xử lý yêu cầu này.';
+            
+            // Lấy thông tin cá nhân đã lưu
+            const personalInfo = userProfile.personalInfo || '';
+            
+            // Tạo phản hồi trực tiếp dựa trên vấn đề và thông tin cá nhân
+            let response = `Về vấn đề "${problem}", dựa trên thông tin của ${userProfile.name || 'bạn'}, tôi có những tư vấn sau:\n\n`;
+            
+            // Thêm tư vấn cụ thể dựa trên nghề nghiệp và vấn đề
+            switch(career) {
+                case 'farmer':
+                    switch(problem) {
+                        case '🌾 Trồng lúa miền Tây':
+                            response = `Dạ, về trồng lúa ở miền Tây, cháu sẽ hướng dẫn chú/cô chi tiết về bón phân và chăm sóc hiệu quả ạ. Chú/cô muốn biết về thời vụ, bón phân hay chăm sóc ạ?`;
+                            break;
+                        case '🌶️ Bệnh cây ớt vàng lá':
+                            response = `Dạ, về cây ớt bị vàng lá và rụng trái, có thể do nấm hoặc thiếu dinh dưỡng. Cháu sẽ hướng dẫn chú/cô cách xử lý ạ. Chú/cô muốn biết về bệnh, cách xử lý hay dinh dưỡng ạ?`;
+                            break;
+                        case '🐔 Gà thả vườn bị bệnh':
+                            response = `Dạ, về gà thả vườn ăn ít và tiêu chảy, có thể do bệnh hoặc thức ăn. Cháu sẽ hướng dẫn chú/cô cách xử lý ạ. Chú/cô muốn biết về bệnh, cách xử lý hay phòng bệnh ạ?`;
+                            break;
+                        case '🍈 Kỹ thuật trồng dưa lưới':
+                            response = `Dạ, dưa lưới là cây trồng có giá trị kinh tế cao. Cháu sẽ hướng dẫn chú/cô kỹ thuật trồng dưa lưới từ A-Z để đạt năng suất tối ưu ạ. Chú/cô muốn biết về thời vụ, đất trồng, gieo hạt, chăm sóc, thụ phấn, làm giàn, phòng bệnh hay thu hoạch ạ?`;
+                            break;
+                        case '🌸 Sầu riêng ra hoa bón phân':
+                            response = `Dạ, về cây sầu riêng giai đoạn ra hoa, cháu sẽ hướng dẫn chú/cô loại phân phù hợp ạ. Chú/cô muốn biết về bón phân cho hoa hay chăm sóc sầu riêng ạ?`;
+                            break;
+                        case '☕ Nhắc bón phân cà phê':
+                            response = `Dạ, về cây cà phê, cháu sẽ nhắc chú/cô bón phân định kỳ vào sáng thứ Bảy hàng tuần ạ. Chú/cô muốn biết về lịch bón phân hay nhắc nhở ạ?`;
+                            break;
+                        case '💰 Cập nhật giá nông sản':
+                            response = `Dạ, về giá nông sản, cháu sẽ cập nhật thông tin mới nhất cho chú/cô ạ. Chú/cô muốn biết về giá lúa hay giá trái cây ạ?`;
+                            break;
+                        case '🌤️ Dự báo thời tiết nông vụ':
+                            response = `Để xem dự báo thời tiết, vui lòng cho tôi biết tỉnh/thành phố của bạn.\n_(Lưu ý: Đây là dữ liệu giả lập. Trong phiên bản chính thức sẽ kết nối nguồn khí tượng thực tế)._`;
+                            break;
+                        case '🌿 Kỹ thuật diệt cỏ hiệu quả':
+                            response = `🌿 Kỹ thuật diệt cỏ hiệu quả:\n\n👨‍🌾 Diệt cỏ thủ công:\n• Nhổ cỏ bằng tay: Hiệu quả, an toàn\n• Cắt cỏ bằng liềm: Nhanh, tiết kiệm\n• Làm cỏ định kỳ: 2-3 lần/vụ\n• Thời điểm: Sáng sớm hoặc chiều mát\n\n🧪 Thuốc diệt cỏ:\n• Glyphosate: Diệt cỏ toàn diện\n• 2,4-D: Diệt cỏ lá rộng\n• Paraquat: Diệt cỏ tiếp xúc\n• Lưu ý: Đọc kỹ hướng dẫn, bảo hộ đầy đủ\n\n🌱 Diệt cỏ hữu cơ:\n• Muối: Rải muối vào gốc cỏ\n• Giấm: Phun giấm trắng 5%\n• Nước sôi: Đổ nước sôi vào gốc\n• Che phủ: Dùng bạt, rơm rạ\n\n🛡️ Phòng ngừa cỏ:\n• Trồng dày: Giảm ánh sáng đến đất\n• Che phủ: Rơm rạ, bạt nilon\n• Luân canh: Thay đổi cây trồng\n• Vệ sinh: Dọn sạch cỏ quanh vườn`;
+                            break;
+                        default:
+                            response = `Tôi sẵn sàng hỗ trợ. ${name} vui lòng cho tôi biết thêm chi tiết về vấn đề này.`;
+                    }
+                    break;
+                    
+                case 'business':
+                     switch(problem) {
+                        case '💰 Quản lý tài chính doanh nghiệp':
+                            response = `Để phân tích, vui lòng cung cấp cho tôi thông tin về ngành hàng và một vài đối thủ chính của ${userProfile.name || 'bạn'}.`;
+                            break;
+                        case '📱 Digital Marketing & Social Media':
+                            response = `Chắc chắn rồi. ${userProfile.name || 'Bạn'} đang quan tâm đến marketing online (Facebook, Google), marketing tại điểm bán hay kênh nào khác?`;
+                            break;
+                        case '👥 Quản lý nhân sự & quy trình':
+                            response = `Để tối ưu chi phí, chúng ta có thể rà soát các khoản chi cho vận hành, nhân sự, marketing... ${userProfile.name || 'Bạn'} có muốn xem qua một checklist các hạng mục cần tối ưu không?`;
+                            break;
+                        case '📊 Phân tích thị trường & đối thủ':
+                            response = `Để phân tích, vui lòng cung cấp cho tôi thông tin về ngành hàng và một vài đối thủ chính của ${userProfile.name || 'bạn'}.`;
+                            break;
+                        case '📈 Xây dựng kế hoạch kinh doanh':
+                            response = `Xây dựng kế hoạch kinh doanh là một bước quan trọng. Chúng ta có thể bắt đầu bằng việc xác định mục tiêu, thị trường, sản phẩm và chiến lược marketing. ${userProfile.name || 'Bạn'} muốn bắt đầu với phần nào trước?`;
+                            break;
+                        case '🎯 Tối ưu hóa chi phí & hiệu quả':
+                            response = `Để tối ưu chi phí, chúng ta có thể rà soát các khoản chi cho vận hành, nhân sự, marketing... ${userProfile.name || 'Bạn'} có muốn xem qua một checklist các hạng mục cần tối ưu không?`;
+                            break;
+                        case '🔍 SEO & SEM Marketing':
+                            response = `Để tối ưu chi phí, chúng ta có thể rà soát các khoản chi cho vận hành, nhân sự, marketing... ${userProfile.name || 'Bạn'} có muốn xem qua một checklist các hạng mục cần tối ưu không?`;
+                            break;
+                        case '📝 Content Marketing & Branding':
+                            response = `Chắc chắn rồi. ${userProfile.name || 'Bạn'} đang quan tâm đến nội dung marketing và xây dựng thương hiệu. Vui lòng cho tôi biết bạn đang làm việc trong lĩnh vực nào để tôi có thể hỗ trợ tốt hơn.`;
+                            break;
+                        default:
+                            response = `Tôi sẵn sàng hỗ trợ. ${userProfile.name || 'Bạn'} vui lòng cho tôi biết thêm chi tiết về vấn đề này.`;
+                    }
+                    break;
+                
+                // ... (Các case khác sẽ được cập nhật tương tự)
+
+                default:
+                    response += `💡 **Tư vấn chung cho công việc:**
+                    
+• Phân tích vấn đề và xác định nguyên nhân
+• Xây dựng kế hoạch hành động cụ thể
+• Tìm kiếm tài nguyên và chuyên gia hỗ trợ
+• Đo lường tiến độ và đánh giá kết quả
+• Liên tục học hỏi và cải thiện
+
+**Bước tiếp theo:** Thiết lập hệ thống theo dõi và đánh giá hiệu quả công việc.`;
+            }
+            
+            return response;
+        }
+
+        function handleProblemSelection(problem) {
+            // Thêm tin nhắn người dùng
+            addMessage(problem, true);
+            
+            // Lưu vấn đề được chọn
+            userProfile.selectedProblem = problem;
+            
+            // AI phản hồi và yêu cầu thông tin chi tiết
+            setTimeout(() => {
+                const response = getProblemResponse(problem);
+                addMessage(response, false);
+                
+                // Hiển thị form cung cấp thông tin
+                setTimeout(() => {
+                    addInformationForm(problem);
+                }, 1000);
+            }, 1000);
+        }
+
+        function getProblemResponse(problem) {
+            const responses = {
+                'Chú/cô đang trồng loại cây gì?': 'Dạ, cháu hiểu chú/cô muốn tư vấn về cây trồng. Hãy cho cháu biết thêm thông tin chi tiết ạ.',
+                'Diện tích canh tác của chú/cô là bao nhiêu?': 'Dạ, diện tích canh tác rất quan trọng để cháu đưa ra tư vấn phù hợp. Hãy cung cấp thông tin chi tiết ạ.',
+                'Chú/cô gặp khó khăn gì về sâu bệnh?': 'Dạ, sâu bệnh là vấn đề phổ biến trong nông nghiệp. Hãy mô tả chi tiết tình trạng hiện tại ạ.',
+                'Chú/cô muốn tăng năng suất như thế nào?': 'Dạ, tăng năng suất là mục tiêu quan trọng. Hãy cho cháu biết tình hình hiện tại ạ.',
+                'Thời tiết hiện tại ảnh hưởng gì đến cây trồng?': 'Dạ, thời tiết ảnh hưởng lớn đến cây trồng. Hãy mô tả tình hình cụ thể ạ.',
+                'Chú/cô có nuôi gà, vịt gì không?': 'Dạ, chăn nuôi gia cầm cũng rất quan trọng trong nông nghiệp. Cháu sẽ hướng dẫn chú/cô cách chăm sóc và phòng bệnh hiệu quả ạ.',
+                'Chú/cô muốn biết về kỹ thuật trồng dưa lưới không?': 'Dạ, dưa lưới là cây trồng có giá trị kinh tế cao. Cháu sẽ hướng dẫn chú/cô kỹ thuật trồng từ A-Z ạ.',
+                'Chú/cô cần thông tin giá nông sản không?': 'Dạ, cháu sẽ cập nhật thông tin giá nông sản mới nhất cho chú/cô ạ.',
+                'Bạn kinh doanh lĩnh vực gì?': 'Tôi sẽ giúp bạn phát triển chiến lược kinh doanh. Hãy cung cấp thông tin chi tiết.',
+                'Quy mô doanh nghiệp của bạn?': 'Quy mô doanh nghiệp ảnh hưởng đến chiến lược. Hãy cho tôi biết thêm.',
+                'Bạn gặp khó khăn gì trong marketing?': 'Marketing là chìa khóa thành công. Hãy mô tả khó khăn cụ thể.',
+                'Bạn muốn mở rộng thị trường như thế nào?': 'Mở rộng thị trường cần chiến lược phù hợp. Hãy cung cấp thông tin.',
+                'Doanh thu hiện tại của bạn ra sao?': 'Doanh thu phản ánh hiệu quả kinh doanh. Hãy chia sẻ tình hình.',
+                'Bạn dạy môn học gì?': 'Tôi sẽ giúp bạn cải thiện phương pháp giảng dạy. Hãy cung cấp thông tin.',
+                'Bạn dạy cấp học nào?': 'Mỗi cấp học có đặc thù riêng. Hãy cho tôi biết thêm.',
+                'Bạn gặp khó khăn gì trong giảng dạy?': 'Giảng dạy có nhiều thách thức. Hãy mô tả khó khăn cụ thể.',
+                'Bạn muốn cải thiện phương pháp dạy như thế nào?': 'Cải thiện phương pháp dạy là mục tiêu tốt. Hãy chia sẻ.',
+                'Sĩ số lớp học của bạn là bao nhiêu?': 'Sĩ số ảnh hưởng đến phương pháp dạy. Hãy cung cấp thông tin.',
+                'Bạn chuyên về ngôn ngữ lập trình nào?': 'Tôi sẽ giúp bạn với coding. Hãy cung cấp thông tin chi tiết.',
+                'Bạn làm frontend hay backend?': 'Frontend và backend có đặc thù khác nhau. Hãy cho tôi biết thêm.',
+                'Bạn gặp khó khăn gì trong coding?': 'Coding có nhiều thách thức. Hãy mô tả vấn đề cụ thể.',
+                'Bạn muốn học framework mới nào?': 'Framework mới giúp nâng cao kỹ năng. Hãy chia sẻ mục tiêu.',
+                'Dự án hiện tại bạn đang làm là gì?': 'Dự án hiện tại rất quan trọng. Hãy cung cấp thông tin.',
+                'Bạn chuyên khoa gì?': 'Tôi sẽ hỗ trợ bạn trong lĩnh vực y tế. Hãy cung cấp thông tin.',
+                'Bạn làm việc ở bệnh viện hay phòng khám?': 'Môi trường làm việc ảnh hưởng đến phương pháp. Hãy cho tôi biết.',
+                'Bạn gặp khó khăn gì trong chẩn đoán?': 'Chẩn đoán là kỹ năng quan trọng. Hãy mô tả khó khăn.',
+                'Bạn muốn cập nhật kiến thức y học như thế nào?': 'Cập nhật kiến thức là cần thiết. Hãy chia sẻ mục tiêu.',
+                'Số lượng bệnh nhân trung bình mỗi ngày?': 'Số lượng bệnh nhân ảnh hưởng đến quy trình. Hãy cung cấp thông tin.',
+                'Bạn chuyên về lĩnh vực pháp lý nào?': 'Tôi sẽ hỗ trợ bạn trong lĩnh vực pháp lý. Hãy cung cấp thông tin.',
+                'Bạn làm việc độc lập hay công ty luật?': 'Loại hình làm việc ảnh hưởng đến phương pháp. Hãy cho tôi biết.',
+                'Bạn gặp khó khăn gì trong tư vấn?': 'Tư vấn pháp lý có nhiều thách thức. Hãy mô tả khó khăn.',
+                'Bạn muốn mở rộng chuyên môn như thế nào?': 'Mở rộng chuyên môn là mục tiêu tốt. Hãy chia sẻ.',
+                'Loại vụ án bạn thường xử lý là gì?': 'Loại vụ án ảnh hưởng đến chuyên môn. Hãy cung cấp thông tin.',
+                'Bạn làm việc trong lĩnh vực gì?': 'Tôi sẽ hỗ trợ bạn trong công việc. Hãy cung cấp thông tin.',
+                'Công việc hiện tại của bạn như thế nào?': 'Công việc hiện tại rất quan trọng. Hãy cho tôi biết thêm.',
+                'Bạn gặp khó khăn gì trong công việc?': 'Mỗi công việc có thách thức riêng. Hãy mô tả khó khăn.',
+                'Bạn muốn phát triển kỹ năng gì?': 'Phát triển kỹ năng là mục tiêu tốt. Hãy chia sẻ.',
+                'Mục tiêu nghề nghiệp của bạn là gì?': 'Mục tiêu nghề nghiệp định hướng phát triển. Hãy cung cấp thông tin.'
+            };
+            
+            return responses[problem] || 'Tôi hiểu vấn đề của bạn. Hãy cung cấp thông tin chi tiết để tôi có thể hỗ trợ tốt hơn.';
+        }
+
+        function addInformationForm(problem) {
+            const messagesContainer = document.getElementById('messages');
+            const formDiv = document.createElement('div');
+            formDiv.className = 'flex justify-start';
+            
+            const formBubble = document.createElement('div');
+            formBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-green-50 border border-green-200';
+            
+            const formTitle = document.createElement('p');
+            formTitle.className = 'text-sm text-gray-700 mb-3 font-medium';
+            formTitle.textContent = `Về vấn đề "${problem}", hãy cho tôi biết thêm chi tiết:`;
+            
+            const form = document.createElement('form');
+            form.className = 'space-y-3';
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                const details = form.querySelector('textarea').value;
+                if (details.trim()) {
+                    // Xóa form
+                    formDiv.remove();
+                    
+                    // Thêm tin nhắn của user
+                    addMessage(details, true);
+                    
+                    // Gửi phản hồi AI
+                    setTimeout(() => {
+                        const response = getAIResponse(currentCareer, problem, details);
+                        addMessage(response, false);
+                    }, 500);
+                }
+            };
+            
+            const textarea = document.createElement('textarea');
+            textarea.className = 'w-full p-3 border border-gray-300 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent';
+            textarea.placeholder = 'Mô tả chi tiết vấn đề của bạn...';
+            textarea.rows = 3;
+            textarea.required = true;
+            
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.className = 'px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors';
+            submitButton.textContent = 'Gửi';
+            
+            form.appendChild(textarea);
+            form.appendChild(submitButton);
+            formBubble.appendChild(formTitle);
+            formBubble.appendChild(form);
+            formDiv.appendChild(formBubble);
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Focus vào textarea
+            setTimeout(() => {
+                textarea.focus();
+            }, 100);
+        }
+
+        function addDetailForm(problem) {
+            const messagesContainer = document.getElementById('messages');
+            const formDiv = document.createElement('div');
+            formDiv.className = 'flex justify-start';
+            
+            const formBubble = document.createElement('div');
+            formBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-green-50 border border-green-200';
+            
+            const formTitle = document.createElement('p');
+            formTitle.className = 'text-sm text-gray-700 mb-3 font-medium';
+            formTitle.textContent = `Về vấn đề "${problem}", hãy cho tôi biết thêm chi tiết:`;
+            
+            const form = document.createElement('form');
+            form.className = 'space-y-3';
+            form.onsubmit = (e) => {
+                e.preventDefault();
+                const details = form.querySelector('textarea').value;
+                if (details.trim()) {
+                    // Xóa form
+                    formDiv.remove();
+                    
+                    // Thêm tin nhắn của user
+                    addMessage(details, true);
+                    
+                    // Gửi phản hồi AI
+                    setTimeout(() => {
+                        const response = getAIResponse(currentCareer, problem, details);
+                        addMessage(response, false);
+                    }, 500);
+                }
+            };
+            
+            const textarea = document.createElement('textarea');
+            textarea.className = 'w-full p-3 border border-gray-300 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent';
+            textarea.placeholder = 'Mô tả chi tiết vấn đề của bạn...';
+            textarea.rows = 3;
+            textarea.required = true;
+            
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.className = 'px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors';
+            submitButton.textContent = 'Gửi';
+            
+            form.appendChild(textarea);
+            form.appendChild(submitButton);
+            formBubble.appendChild(formTitle);
+            formBubble.appendChild(form);
+            formDiv.appendChild(formBubble);
+            messagesContainer.appendChild(formDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Focus vào textarea
+            setTimeout(() => {
+                textarea.focus();
+            }, 100);
         }
 
         function changeCareer() {
-            currentCareer = '';
-            localStorage.removeItem('selectedCareer');
-            document.getElementById('careerSelection').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('careerSelection').classList.remove('hidden');
+            document.getElementById('messages').innerHTML = '';
         }
-        
+
         function shareApp() {
-            // Placeholder for Zalo's share functionality
-            alert('Chức năng chia sẻ đang được phát triển!');
+            if (navigator.share) {
+                navigator.share({
+                    title: 'V AI',
+                    text: 'Trợ lý AI thông minh cho mọi nghề nghiệp',
+                    url: window.location.href
+                });
+            }
         }
 
-        function addMessage(text, sender) {
-            const messagesDiv = document.getElementById('messages');
-            const messageBubble = document.createElement('div');
-            messageBubble.classList.add('message-bubble', 'p-4', 'rounded-2xl', 'fade-in', 'max-w-xs', 'md:max-w-md');
-
-            const senderIcon = document.createElement('div');
-            senderIcon.classList.add('w-10', 'h-10', 'rounded-full', 'bg-gray-200', 'flex-shrink-0');
-            const senderImg = document.createElement('img');
-            senderImg.classList.add('w-10', 'h-10', 'rounded-full');
-
-            const messageContent = document.createElement('div');
-            messageContent.innerHTML = text.replace(/\n/g, '<br>');
-
-
-            if (sender === 'user') {
-                messageBubble.classList.add('bg-blue-500', 'text-white', 'self-end');
-                senderImg.src = userProfile.avatar;
-                const messageContainer = document.createElement('div');
-                messageContainer.classList.add('flex', 'items-end', 'justify-end', 'space-x-3');
-                messageContainer.appendChild(messageContent);
-                messageContainer.appendChild(senderIcon);
-                senderIcon.appendChild(senderImg);
-                messageBubble.appendChild(messageContainer);
-            } else {
-                messageBubble.classList.add('bg-white', 'text-gray-800', 'self-start', 'shadow');
-                senderImg.src = 'boost.png';
-                const messageContainer = document.createElement('div');
-                messageContainer.classList.add('flex', 'items-end', 'space-x-3');
-                senderIcon.appendChild(senderImg);
-                messageContainer.appendChild(senderIcon);
-                messageContainer.appendChild(messageContent);
-                messageBubble.appendChild(messageContainer);
+        function addMessage(text, isUser) {
+            console.log('addMessage called:', text, isUser); // Debug log
+            
+            const messagesContainer = document.getElementById('messages');
+            console.log('messagesContainer:', messagesContainer); // Debug log
+            
+            if (!messagesContainer) {
+                console.error('messagesContainer not found!'); // Debug log
+                return;
             }
             
-            // Append the whole bubble to the messages div
-            const wrapper = document.createElement('div');
-            wrapper.classList.add('flex', sender === 'user' ? 'justify-end' : 'justify-start');
-            wrapper.appendChild(messageBubble);
-
-            messagesDiv.appendChild(wrapper);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        function addMessageWithSuggestions(text, sender, suggestions = []) {
-            addMessage(text, sender);
-
-            if (suggestions.length > 0) {
-                const suggestionsContainer = document.createElement('div');
-                suggestionsContainer.classList.add('flex', 'flex-wrap', 'gap-2', 'mt-3', 'justify-start', 'pl-14');
-
-                suggestions.forEach(suggestion => {
-                    const button = document.createElement('button');
-                    button.classList.add('bg-blue-100', 'text-blue-800', 'px-4', 'py-2', 'rounded-full', 'text-sm', 'hover:bg-blue-200', 'transition-colors');
-                    button.textContent = suggestion.text;
-                    button.onclick = () => handleSuggestionClick(suggestion);
-                    suggestionsContainer.appendChild(button);
-                });
-
-                document.getElementById('messages').appendChild(suggestionsContainer);
-                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
-            }
-        }
-        
-        function handleSuggestionClick(suggestion) {
-            const messageInput = document.getElementById('messageInput');
-            messageInput.value = suggestion.text;
-            sendMessage();
-            // Hide suggestions after one is clicked
-            const suggestionsContainers = document.querySelectorAll('.flex.flex-wrap.gap-2');
-            suggestionsContainers.forEach(c => c.remove());
-        }
-
-        function sendMessage() {
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value.trim();
-
-            if (message && !isTyping) {
-                addMessage(message, 'user');
-                messageInput.value = '';
-                
-                // Disable send button while AI is "typing"
-                document.getElementById('sendButton').disabled = true;
-
-                // Simulate AI typing
-                setTimeout(() => {
-                    isTyping = true;
-                    addTypingIndicator();
-                }, 500);
-
-                // Simulate AI response
-                setTimeout(() => {
-                    isTyping = false;
-                    removeTypingIndicator();
-                    const aiResponse = generateResponse(message);
-                    addMessage(aiResponse, 'ai');
-                    
-                    // Re-enable send button
-                    document.getElementById('sendButton').disabled = false;
-                }, 2000 + Math.random() * 1000); // Simulate network delay
-            }
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'}`;
+            
+            const messageBubble = document.createElement('div');
+            messageBubble.className = `message-bubble px-4 py-3 rounded-2xl shadow-sm ${
+                isUser
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-gray-800 border border-gray-200'
+            }`;
+            
+            const messageText = document.createElement('p');
+            messageText.className = 'whitespace-pre-wrap text-sm leading-relaxed';
+            messageText.textContent = text;
+            
+            messageBubble.appendChild(messageText);
+            messageDiv.appendChild(messageBubble);
+            messagesContainer.appendChild(messageDiv);
+            
+            console.log('Message added successfully'); // Debug log
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         function addTypingIndicator() {
-            const messagesDiv = document.getElementById('messages');
-            const typingIndicator = document.createElement('div');
-            typingIndicator.id = 'typingIndicator';
-            typingIndicator.classList.add('flex', 'items-center', 'space-x-2', 'self-start', 'pl-14', 'py-2');
-            typingIndicator.innerHTML = `
-                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0s;"></div>
-                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.2s;"></div>
-                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.4s;"></div>
+            const messagesContainer = document.getElementById('messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex justify-start';
+            typingDiv.id = 'typing-indicator';
+            
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'bg-gray-100 text-gray-800 px-4 py-3 rounded-2xl border border-gray-200';
+            
+            const dots = document.createElement('div');
+            dots.className = 'flex items-center space-x-1';
+            dots.innerHTML = `
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.1s"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full typing-animation" style="animation-delay: 0.2s"></div>
             `;
-            messagesDiv.appendChild(typingIndicator);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            typingBubble.appendChild(dots);
+            typingDiv.appendChild(typingBubble);
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         function removeTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
+            const typingIndicator = document.getElementById('typing-indicator');
             if (typingIndicator) {
                 typingIndicator.remove();
             }
         }
 
+        function getAIResponse(career, problem, details) {
+            const careerData = careerResponses[career];
+            if (!careerData) return 'Xin lỗi, tôi không thể xử lý yêu cầu này.';
+            
+            // Lưu thông tin user
+            userProfile.career = career;
+            userProfile.problem = problem;
+            userProfile.details = details;
+            localStorage.setItem('userProfile', JSON.stringify(userProfile));
+            
+            // Lấy thông tin cá nhân đã lưu
+            const personalInfo = userProfile.personalInfo || '';
+            
+            // Tạo phản hồi dựa trên nghề nghiệp và vấn đề
+            let response = `Cảm ơn bạn đã chia sẻ thông tin về vấn đề "${problem}". `;
+            
+            // Thêm tư vấn cụ thể dựa trên nghề nghiệp và thông tin cá nhân
+            switch(career) {
+                case 'farmer':
+                    response += `Dạ, dựa trên thông tin cá nhân của chú/cô và vấn đề "${problem}", cháu có một số gợi ý:
+                    
+• **Phân tích tình huống**: ${details}
+• **Giải pháp đề xuất**: Áp dụng kỹ thuật canh tác hiện đại phù hợp với điều kiện của chú/cô
+• **Tài nguyên hữu ích**: Tham khảo các mô hình nông nghiệp bền vững
+• **Bước tiếp theo**: Theo dõi và đánh giá kết quả
+
+Chú/cô có muốn cháu tư vấn thêm về vấn đề khác không ạ?`;
+                    break;
+                    
+                case 'business':
+                    response += `Dựa trên tình hình kinh doanh của bạn và vấn đề "${problem}", tôi có một số tư vấn:
+                    
+• **Phân tích thị trường**: Đánh giá cơ hội và rủi ro phù hợp với quy mô của bạn
+• **Chiến lược đề xuất**: Phát triển kế hoạch hành động cụ thể
+• **Quản lý rủi ro**: Xây dựng các biện pháp bảo vệ
+• **Đo lường thành công**: Thiết lập các chỉ số KPI phù hợp
+
+Bạn có muốn tôi tư vấn thêm về chiến lược kinh doanh không?`;
+                    break;
+                    
+                case 'teacher':
+                    response += `Dựa trên môi trường giảng dạy của bạn và vấn đề "${problem}", tôi có một số gợi ý:
+                    
+• **Phương pháp giảng dạy**: Áp dụng các kỹ thuật hiện đại phù hợp với cấp học và môn học
+• **Quản lý lớp học**: Xây dựng môi trường học tập tích cực
+• **Đánh giá học sinh**: Phát triển hệ thống đánh giá toàn diện
+• **Phát triển chuyên môn**: Cập nhật kiến thức và kỹ năng
+
+Bạn có muốn tôi tư vấn thêm về phương pháp giảng dạy không?`;
+                    break;
+                    
+                case 'developer':
+                    response += `Dựa trên stack công nghệ và dự án của bạn, với vấn đề "${problem}", tôi có một số tư vấn:
+                    
+• **Phân tích kỹ thuật**: Đánh giá vấn đề và giải pháp phù hợp với công nghệ bạn đang sử dụng
+• **Công nghệ phù hợp**: Lựa chọn stack công nghệ tối ưu
+• **Quy trình phát triển**: Áp dụng các phương pháp agile
+• **Bảo trì và nâng cấp**: Xây dựng hệ thống bền vững
+
+Bạn có muốn tôi tư vấn thêm về công nghệ không?`;
+                    break;
+                    
+                case 'doctor':
+                    response += `Dựa trên chuyên môn và môi trường làm việc của bạn, với vấn đề "${problem}", tôi có một số gợi ý:
+                    
+• **Cập nhật kiến thức**: Theo dõi các tiến bộ y học mới trong chuyên khoa của bạn
+• **Phương pháp chẩn đoán**: Áp dụng công nghệ hiện đại phù hợp với môi trường làm việc
+• **Chăm sóc bệnh nhân**: Cải thiện trải nghiệm điều trị
+• **Nghiên cứu y học**: Tham gia các dự án nghiên cứu
+
+Bạn có muốn tôi tư vấn thêm về chuyên môn y tế không?`;
+                    break;
+                    
+                case 'lawyer':
+                    response += `Dựa trên lĩnh vực pháp lý và kinh nghiệm của bạn, với vấn đề "${problem}", tôi có một số tư vấn:
+                    
+• **Phân tích pháp lý**: Đánh giá tình huống và rủi ro trong lĩnh vực chuyên môn
+• **Chiến lược bảo vệ**: Xây dựng lập luận vững chắc
+• **Cập nhật luật pháp**: Theo dõi các thay đổi pháp lý trong lĩnh vực của bạn
+• **Tư vấn khách hàng**: Cải thiện kỹ năng giao tiếp
+
+Bạn có muốn tôi tư vấn thêm về vấn đề pháp lý không?`;
+                    break;
+                    
+                default:
+                    response += `Dựa trên thông tin bạn cung cấp về "${problem}" và "${details}", tôi có một số tư vấn chung:
+                    
+• **Phân tích vấn đề**: Hiểu rõ nguyên nhân và tác động
+• **Giải pháp đề xuất**: Xây dựng kế hoạch hành động
+• **Tài nguyên hỗ trợ**: Tìm kiếm thông tin và chuyên gia
+• **Theo dõi tiến độ**: Đánh giá và điều chỉnh kế hoạch
+
+Bạn có muốn tôi tư vấn thêm về vấn đề khác không?`;
+            }
+            
+            return response;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const text = input.value.trim();
+            
+            if (text && !isTyping) {
+                addMessage(text, true);
+                input.value = '';
+                
+                isTyping = true;
+                addTypingIndicator();
+                
+                // Simulate AI thinking
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    const response = generateAIResponse(text);
+                    addMessage(response, false);
+                    isTyping = false;
+                    
+                    // Bỏ phần hiển thị lại form
+                    // setTimeout(() => {
+                    //     showContinueForm();
+                    // }, 1000);
+                }, 1500);
+            }
+        }
+
+        function generateAIResponse(userInput) {
+            const input = userInput.toLowerCase();
+            const name = userProfile.name || 'chú/cô';
+            const careerData = careerResponses[currentCareer];
+
+            if (input.includes('chào') || input.includes('hello')) {
+                return `Chào ${name}, cháu NôngTrí đây ạ! Chú/cô cần cháu hỗ trợ vấn đề gì hôm nay?`;
+            }
+
+            // Xử lý các chủ đề nông nghiệp chi tiết
+            if (currentCareer === 'farmer') {
+                // Dưa lưới
+                if (input.includes('dưa lưới') || input.includes('melon')) {
+                    let ans = '';
+                    if (careerData.melon) {
+                        ans += '🍈 Đặc điểm & kỹ thuật trồng dưa lưới:\n';
+                        if (input.match(/(thời vụ|mùa vụ|trồng khi nào)/)) ans += careerData.melon.detailed.season + '\n';
+                        if (input.match(/(đất|đất trồng|chuẩn bị đất)/)) ans += careerData.melon.detailed.soil + '\n';
+                        if (input.match(/(gieo|hạt|ươm)/)) ans += careerData.melon.detailed.seeding + '\n';
+                        if (input.match(/(chăm sóc|tưới|bón phân)/)) ans += careerData.melon.detailed.care + '\n';
+                        if (input.match(/(thụ phấn|phấn|hoa)/)) ans += careerData.melon.detailed.pollination + '\n';
+                        if (input.match(/(giàn|leo|treo)/)) ans += careerData.melon.detailed.trellis + '\n';
+                        if (input.match(/(bệnh|sâu|phòng bệnh)/)) ans += careerData.melon.detailed.disease + '\n';
+                        if (input.match(/(thu hoạch|hái|chín)/)) ans += careerData.melon.detailed.harvest + '\n';
+                        // Nếu không có từ khóa cụ thể, trả lời tất cả các mục
+                        if (ans.trim() === '🍈 Đặc điểm & kỹ thuật trồng dưa lưới:') {
+                            ans += careerData.melon.detailed.season + '\n' + careerData.melon.detailed.soil + '\n' + careerData.melon.detailed.seeding + '\n' + careerData.melon.detailed.care + '\n' + careerData.melon.detailed.pollination + '\n' + careerData.melon.detailed.trellis + '\n' + careerData.melon.detailed.disease + '\n' + careerData.melon.detailed.harvest + '\n';
+                        }
+                        if (careerData.melon.tips) {
+                            ans += '\n💡 Mẹo hay:\n- ' + careerData.melon.tips.join('\n- ');
+                        }
+                        return ans;
+                    }
+                }
+                // Lúa
+                if (input.includes('lúa') || input.includes('rice')) {
+                    let ans = '';
+                    if (careerData.rice) {
+                        ans += '🌾 Kỹ thuật trồng lúa miền Tây:\n';
+                        if (input.match(/(thời vụ|mùa vụ)/)) ans += careerData.rice.detailed.season + '\n';
+                        if (input.match(/(phân|bón phân)/)) ans += careerData.rice.detailed.fertilizer + '\n';
+                        if (input.match(/(chăm sóc|tưới)/)) ans += careerData.rice.detailed.care + '\n';
+                        if (ans === '🌾 Kỹ thuật trồng lúa miền Tây:\n') {
+                            ans += careerData.rice.detailed.season + '\n' + careerData.rice.detailed.fertilizer + '\n' + careerData.rice.detailed.care + '\n';
+                        }
+                        return ans;
+                    }
+                }
+                // Ớt
+                if (input.includes('ớt') || input.includes('chili') || input.includes('vàng lá') || input.includes('rụng trái')) {
+                    let ans = '';
+                    if (careerData.chili) {
+                        ans += '🌶️ Kỹ thuật & phòng bệnh cây ớt:\n';
+                        if (input.match(/(bệnh|nấm)/)) ans += careerData.chili.detailed.disease + '\n';
+                        if (input.match(/(xử lý|trị)/)) ans += careerData.chili.detailed.treatment + '\n';
+                        if (input.match(/(dinh dưỡng|phân)/)) ans += careerData.chili.detailed.nutrition + '\n';
+                        if (ans === '🌶️ Kỹ thuật & phòng bệnh cây ớt:\n') {
+                            ans += careerData.chili.detailed.disease + '\n' + careerData.chili.detailed.treatment + '\n' + careerData.chili.detailed.nutrition + '\n';
+                        }
+                        return ans;
+                    }
+                }
+                // Gà
+                if (input.includes('gà') || input.includes('chicken') || input.includes('tiêu chảy') || input.includes('ăn ít')) {
+                    let ans = '';
+                    if (careerData.chicken) {
+                        ans += '🐔 Chăm sóc & phòng bệnh gà thả vườn:\n';
+                        if (input.match(/(bệnh)/)) ans += careerData.chicken.detailed.disease + '\n';
+                        if (input.match(/(xử lý|trị)/)) ans += careerData.chicken.detailed.treatment + '\n';
+                        if (input.match(/(phòng|ngừa)/)) ans += careerData.chicken.detailed.prevention + '\n';
+                        if (ans === '🐔 Chăm sóc & phòng bệnh gà thả vườn:\n') {
+                            ans += careerData.chicken.detailed.disease + '\n' + careerData.chicken.detailed.treatment + '\n' + careerData.chicken.detailed.prevention + '\n';
+                        }
+                        return ans;
+                    }
+                }
+                // Sầu riêng
+                if (input.includes('sầu riêng') || input.includes('durian') || input.includes('ra hoa')) {
+                    let ans = '';
+                    if (careerData.durian) {
+                        ans += '🌸 Kỹ thuật chăm sóc sầu riêng ra hoa:\n';
+                        if (input.match(/(hoa|phân)/)) ans += careerData.durian.detailed.flowering + '\n';
+                        if (input.match(/(chăm sóc)/)) ans += careerData.durian.detailed.care + '\n';
+                        if (ans === '🌸 Kỹ thuật chăm sóc sầu riêng ra hoa:\n') {
+                            ans += careerData.durian.detailed.flowering + '\n' + careerData.durian.detailed.care + '\n';
+                        }
+                        return ans;
+                    }
+                }
+                // Cà phê
+                if (input.includes('cà phê') || input.includes('coffee') || input.includes('bón phân')) {
+                    let ans = '';
+                    if (careerData.coffee) {
+                        ans += '☕ Lịch bón phân & chăm sóc cà phê:\n';
+                        if (input.match(/(lịch|lịch trình)/)) ans += careerData.coffee.detailed.schedule + '\n';
+                        if (input.match(/(nhắc|nhớ)/)) ans += careerData.coffee.detailed.reminder + '\n';
+                        if (ans === '☕ Lịch bón phân & chăm sóc cà phê:\n') {
+                            ans += careerData.coffee.detailed.schedule + '\n' + careerData.coffee.detailed.reminder + '\n';
+                        }
+                        return ans;
+                    }
+                }
+                // Giá cả
+                if (input.includes('giá') || input.includes('price') || input.includes('thị trường')) {
+                    let ans = '';
+                    if (careerData.price) {
+                        ans += '💰 Giá nông sản mới nhất:\n';
+                        if (input.match(/(lúa)/)) ans += careerData.price.detailed.rice + '\n';
+                        if (input.match(/(trái cây|hoa quả)/)) ans += careerData.price.detailed.fruit + '\n';
+                        if (ans === '💰 Giá nông sản mới nhất:\n') {
+                            ans += careerData.price.detailed.rice + '\n' + careerData.price.detailed.fruit + '\n';
+                        }
+                        return ans;
+                    }
+                }
+                // Thời tiết
+                if (input.includes('thời tiết') || input.includes('weather') || input.includes('nhiệt độ')) {
+                    return careerData.weather[Math.floor(Math.random() * careerData.weather.length)];
+                }
+                // Kỹ thuật canh tác
+                if (input.includes('canh tác') || input.includes('trồng trọt') || input.includes('năng suất')) {
+                    return careerData.farming[Math.floor(Math.random() * careerData.farming.length)];
+                }
+                // Sâu bệnh
+                if (input.includes('sâu bệnh') || input.includes('phòng bệnh') || input.includes('thuốc')) {
+                    return careerData.pest[Math.floor(Math.random() * careerData.pest.length)];
+                }
+                // Diệt cỏ
+                if (input.includes('diệt cỏ') || input.includes('cỏ') || input.includes('weed')) {
+                    let ans = '';
+                    if (careerData.weed) {
+                        ans += '🌿 Kỹ thuật diệt cỏ hiệu quả:\n';
+                        if (input.match(/(thủ công|nhổ|tay)/)) ans += careerData.weed.detailed.manual + '\n';
+                        if (input.match(/(thuốc|hóa học|glyphosate)/)) ans += careerData.weed.detailed.chemical + '\n';
+                        if (input.match(/(hữu cơ|tự nhiên|muối|giấm)/)) ans += careerData.weed.detailed.organic + '\n';
+                        if (input.match(/(phòng|ngừa|che phủ)/)) ans += careerData.weed.detailed.prevention + '\n';
+                        if (ans === '🌿 Kỹ thuật diệt cỏ hiệu quả:\n') {
+                            ans += careerData.weed.detailed.manual + '\n' + careerData.weed.detailed.chemical + '\n' + careerData.weed.detailed.organic + '\n' + careerData.weed.detailed.prevention + '\n';
+                        }
+                        return ans;
+                    }
+                }
+            }
+
+            if (careerData) {
+                // Xử lý các ngành khác với dữ liệu chi tiết
+                if (currentCareer === 'business') {
+                    // Tài chính
+                    if (input.includes('tài chính') || input.includes('finance') || input.includes('quản lý tiền')) {
+                        let ans = '';
+                        if (careerData.finance) {
+                            ans += '💰 Quản lý tài chính doanh nghiệp:\n';
+                            if (input.match(/(kế hoạch|lập kế hoạch)/)) ans += careerData.finance.detailed.planning + '\n';
+                            if (input.match(/(chi phí|cost)/)) ans += careerData.finance.detailed.cost + '\n';
+                            if (input.match(/(đầu tư|investment)/)) ans += careerData.finance.detailed.investment + '\n';
+                            if (ans === '💰 Quản lý tài chính doanh nghiệp:\n') {
+                                ans += careerData.finance.detailed.planning + '\n' + careerData.finance.detailed.cost + '\n' + careerData.finance.detailed.investment + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                    // Digital Marketing
+                    if (input.includes('digital') || input.includes('marketing') || input.includes('quảng cáo')) {
+                        let ans = '';
+                        if (careerData.digital) {
+                            ans += '📱 Digital Marketing:\n';
+                            if (input.match(/(social|facebook|instagram|tiktok)/)) ans += careerData.digital.detailed.social + '\n';
+                            if (input.match(/(content|blog|video)/)) ans += careerData.digital.detailed.content + '\n';
+                            if (input.match(/(seo|sem|từ khóa)/)) ans += careerData.digital.detailed.seo + '\n';
+                            if (ans === '📱 Digital Marketing:\n') {
+                                ans += careerData.digital.detailed.social + '\n' + careerData.digital.detailed.content + '\n' + careerData.digital.detailed.seo + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                    // Quản lý
+                    if (input.includes('quản lý') || input.includes('management') || input.includes('nhân sự')) {
+                        let ans = '';
+                        if (careerData.management) {
+                            ans += '👥 Quản lý doanh nghiệp:\n';
+                            if (input.match(/(nhân sự|team|tuyển dụng)/)) ans += careerData.management.detailed.team + '\n';
+                            if (input.match(/(quy trình|process|tối ưu)/)) ans += careerData.management.detailed.process + '\n';
+                            if (input.match(/(chất lượng|quality)/)) ans += careerData.management.detailed.quality + '\n';
+                            if (ans === '👥 Quản lý doanh nghiệp:\n') {
+                                ans += careerData.management.detailed.team + '\n' + careerData.management.detailed.process + '\n' + careerData.management.detailed.quality + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                }
+                
+                if (currentCareer === 'teacher') {
+                    // Phương pháp giảng dạy
+                    if (input.includes('phương pháp') || input.includes('methodology') || input.includes('giảng dạy')) {
+                        let ans = '';
+                        if (careerData.methodology) {
+                            ans += '🎯 Phương pháp giảng dạy hiện đại:\n';
+                            if (input.match(/(chủ động|active|project)/)) ans += careerData.methodology.detailed.active + '\n';
+                            if (input.match(/(công nghệ|tech|ai)/)) ans += careerData.methodology.detailed.tech + '\n';
+                            if (input.match(/(đánh giá|assessment)/)) ans += careerData.methodology.detailed.assessment + '\n';
+                            if (ans === '🎯 Phương pháp giảng dạy hiện đại:\n') {
+                                ans += careerData.methodology.detailed.active + '\n' + careerData.methodology.detailed.tech + '\n' + careerData.methodology.detailed.assessment + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                    // Quản lý lớp học
+                    if (input.includes('lớp học') || input.includes('classroom') || input.includes('quản lý')) {
+                        let ans = '';
+                        if (careerData.classroom) {
+                            ans += '📋 Quản lý lớp học hiệu quả:\n';
+                            if (input.match(/(quy tắc|rules)/)) ans += careerData.classroom.detailed.rules + '\n';
+                            if (input.match(/(môi trường|environment)/)) ans += careerData.classroom.detailed.environment + '\n';
+                            if (input.match(/(giao tiếp|communication)/)) ans += careerData.classroom.detailed.communication + '\n';
+                            if (ans === '📋 Quản lý lớp học hiệu quả:\n') {
+                                ans += careerData.classroom.detailed.rules + '\n' + careerData.classroom.detailed.environment + '\n' + careerData.classroom.detailed.communication + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                    // Chương trình giảng dạy
+                    if (input.includes('chương trình') || input.includes('curriculum') || input.includes('kế hoạch')) {
+                        let ans = '';
+                        if (careerData.curriculum) {
+                            ans += '📝 Thiết kế chương trình giảng dạy:\n';
+                            if (input.match(/(kế hoạch|planning)/)) ans += careerData.curriculum.detailed.planning + '\n';
+                            if (input.match(/(phân hóa|differentiation)/)) ans += careerData.curriculum.detailed.differentiation + '\n';
+                            if (input.match(/(tích hợp|integration)/)) ans += careerData.curriculum.detailed.integration + '\n';
+                            if (ans === '📝 Thiết kế chương trình giảng dạy:\n') {
+                                ans += careerData.curriculum.detailed.planning + '\n' + careerData.curriculum.detailed.differentiation + '\n' + careerData.curriculum.detailed.integration + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                }
+                
+                if (currentCareer === 'developer') {
+                    // Frontend
+                    if (input.includes('frontend') || input.includes('react') || input.includes('vue') || input.includes('angular')) {
+                        let ans = '';
+                        if (careerData.frontend) {
+                            ans += '⚛️ Frontend Development:\n';
+                            if (input.match(/(framework|react|vue|angular)/)) ans += careerData.frontend.detailed.frameworks + '\n';
+                            if (input.match(/(tool|công cụ|webpack)/)) ans += careerData.frontend.detailed.tools + '\n';
+                            if (input.match(/(tối ưu|optimization|performance)/)) ans += careerData.frontend.detailed.optimization + '\n';
+                            if (ans === '⚛️ Frontend Development:\n') {
+                                ans += careerData.frontend.detailed.frameworks + '\n' + careerData.frontend.detailed.tools + '\n' + careerData.frontend.detailed.optimization + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                    // Backend
+                    if (input.includes('backend') || input.includes('api') || input.includes('database')) {
+                        let ans = '';
+                        if (careerData.backend) {
+                            ans += '🐍 Backend Development:\n';
+                            if (input.match(/(ngôn ngữ|language|python|java)/)) ans += careerData.backend.detailed.languages + '\n';
+                            if (input.match(/(database|sql|mongodb)/)) ans += careerData.backend.detailed.databases + '\n';
+                            if (input.match(/(kiến trúc|architecture|microservice)/)) ans += careerData.backend.detailed.architecture + '\n';
+                            if (ans === '🐍 Backend Development:\n') {
+                                ans += careerData.backend.detailed.languages + '\n' + careerData.backend.detailed.databases + '\n' + careerData.backend.detailed.architecture + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                    // DevOps
+                    if (input.includes('devops') || input.includes('deploy') || input.includes('cloud')) {
+                        let ans = '';
+                        if (careerData.devops) {
+                            ans += '🔄 DevOps & Cloud:\n';
+                            if (input.match(/(ci|cd|pipeline|jenkins)/)) ans += careerData.devops.detailed.ci_cd + '\n';
+                            if (input.match(/(cloud|aws|azure|gcp)/)) ans += careerData.devops.detailed.cloud + '\n';
+                            if (input.match(/(security|bảo mật|authentication)/)) ans += careerData.devops.detailed.security + '\n';
+                            if (ans === '🔄 DevOps & Cloud:\n') {
+                                ans += careerData.devops.detailed.ci_cd + '\n' + careerData.devops.detailed.cloud + '\n' + careerData.devops.detailed.security + '\n';
+                            }
+                            return ans;
+                        }
+                    }
+                }
+
+                // Check for keywords in a specific order
+                if (careerData.strategy && (input.includes('kinh doanh') || input.includes('chiến lược'))) {
+                     return careerData.strategy[Math.floor(Math.random() * careerData.strategy.length)];
+                }
+                if (careerData.pest && (input.includes('sâu bệnh') || input.includes('phòng bệnh'))) {
+                     return careerData.pest[Math.floor(Math.random() * careerData.pest.length)];
+                }
+                if (careerData.legal && (input.includes('luật') || input.includes('pháp lý'))) {
+                     return careerData.legal[Math.floor(Math.random() * careerData.legal.length)];
+                }
+                if (careerData.general) {
+                     return careerData.general[Math.floor(Math.random() * careerData.general.length)];
+                }
+            }
+
+            // Default fallback response
+            return `Dạ, cảm ơn câu hỏi của ${name}. Cháu đã ghi nhận thông tin và sẽ học hỏi thêm để có thể hỗ trợ chú/cô tốt hơn trong tương lai ạ.`;
+        }
+
+        function addQuickMessage(text) {
+            if (!isTyping) {
+                addMessage(text, true);
+                
+                isTyping = true;
+                addTypingIndicator();
+                
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    const response = generateAIResponse(text);
+                    addMessage(response, false);
+                    isTyping = false;
+                }, 1500);
+            }
+        }
+
         function handleKeyPress(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
                 sendMessage();
             }
         }
 
-        function getRandomResponse(responses) {
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
-        
-        function generateResponse(userInput) {
-            const careerData = careerResponses[currentCareer];
-            if (!careerData) return "Tôi chưa hiểu rõ. Bạn có thể nói rõ hơn không?";
+        function showSuggestionButtons() {
+            console.log('showSuggestionButtons called'); // Debug log
+            
+            const name = userProfile.name || (currentCareer === 'farmer' ? 'chú/cô' : 'bạn');
+            const suggestions = getSuggestions(currentCareer);
+            const messagesContainer = document.getElementById('messages');
+            
+            console.log('name:', name); // Debug log
+            console.log('suggestions:', suggestions); // Debug log
+            console.log('messagesContainer:', messagesContainer); // Debug log
 
-            userInput = userInput.toLowerCase();
-
-            // Simple keyword matching
-            if (userInput.includes('thời tiết')) {
-                return getRandomResponse(careerData.weather || ["Tôi không có thông tin về thời tiết cho ngành này."]);
-            }
-            if (userInput.includes('trồng trọt') || userInput.includes('canh tác')) {
-                return getRandomResponse(careerData.farming || ["Tôi không có thông tin về trồng trọt cho ngành này."]);
-            }
-            if (userInput.includes('sâu bệnh')) {
-                return getRandomResponse(careerData.pest || ["Tôi không có thông tin về sâu bệnh cho ngành này."]);
-            }
-            if (userInput.includes('kinh doanh')) {
-                return getRandomResponse(careerData.strategy || ["Tôi không có thông tin về kinh doanh cho ngành này."]);
-            }
-            if (userInput.includes('marketing')) {
-                return getRandomResponse(careerData.marketing || ["Tôi không có thông tin về marketing cho ngành này."]);
-            }
-            if (userInput.includes('giáo án') || userInput.includes('giảng dạy')) {
-                return getRandomResponse(careerData.lesson || ["Tôi không có thông tin về giáo án cho ngành này."]);
-            }
-            if (userInput.includes('lớp học')) {
-                return getRandomResponse(careerData.management || ["Tôi không có thông tin về quản lý lớp học cho ngành này."]);
-            }
-            if (userInput.includes('code') || userInput.includes('lập trình')) {
-                return getRandomResponse(careerData.coding || ["Tôi không có thông tin về lập trình cho ngành này."]);
-            }
-            if (userInput.includes('debug')) {
-                return getRandomResponse(careerData.debugging || ["Tôi không có thông tin về debug cho ngành này."]);
-            }
-            if (userInput.includes('hợp đồng') || userInput.includes('pháp lý')) {
-                return getRandomResponse(careerData.legal_advice || ["Tôi không có thông tin về pháp lý cho ngành này."]);
-            }
-             if (userInput.includes('soạn thảo') || userInput.includes('văn bản')) {
-                return getRandomResponse(careerData.document || ["Tôi không có thông tin về soạn thảo văn bản cho ngành này."]);
-            }
-            if (userInput.includes('kế hoạch') || userInput.includes('công việc')) {
-                return getRandomResponse(careerData.planning || ["Tôi không có thông tin về lập kế hoạch công việc cho ngành này."]);
-            }
-
-
-            // Detailed responses for specific queries
-            if (currentCareer === 'farmer') {
-                if (userInput.includes('lúa')) return careerData.rice.detailed.season + '\n\n' + careerData.rice.detailed.fertilizer;
-                if (userInput.includes('ớt')) return careerData.chili.detailed.disease;
-                if (userInput.includes('gà')) return careerData.chicken.detailed.disease;
-                if (userInput.includes('dưa lưới')) return careerData.melon.detailed.care;
-            }
-
-            // Fallback response
-            const randomFollowUp = getRandomResponse(careerData.followUpQuestions || ["Bạn cần tôi giúp gì khác không?"]);
-            return `Tôi chưa hiểu rõ ý của bạn. Bạn có thể hỏi về: "${randomFollowUp}" không?`;
+            // Add a title message
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'flex justify-start';
+            const titleBubble = document.createElement('div');
+            titleBubble.className = 'message-bubble px-4 py-3 rounded-2xl shadow-sm bg-gray-100 border border-gray-200';
+            titleBubble.innerHTML = `<p class="text-sm text-gray-700 font-medium">Đây là một vài điều tôi có thể giúp ${name}. Hãy chọn một nhé:</p>`;
+            titleDiv.appendChild(titleBubble);
+            messagesContainer.appendChild(titleDiv);
+            
+            // Add suggestion buttons
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'flex flex-wrap gap-2 mt-3 justify-start';
+            buttonContainer.id = 'suggestion-buttons';
+            
+            suggestions.forEach(suggestion => {
+                const button = document.createElement('button');
+                button.className = 'px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-semibold rounded-lg transition-colors duration-200 border border-blue-200';
+                button.textContent = suggestion;
+                button.onclick = () => {
+                    console.log('Button clicked:', suggestion); // Debug log
+                    handleSuggestionClick(suggestion);
+                };
+                buttonContainer.appendChild(button);
+            });
+            
+            messagesContainer.appendChild(buttonContainer);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            console.log('Suggestion buttons added successfully'); // Debug log
         }
 
-
-        // Initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            getUserInfo();
-            const savedCareer = localStorage.getItem('selectedCareer');
-            if (savedCareer) {
-                selectCareer(savedCareer);
+        function handleSuggestionClick(suggestion) {
+            console.log('Button clicked:', suggestion); // Debug log
+            
+            // Remove buttons
+            const buttonContainer = document.getElementById('suggestion-buttons');
+            if (buttonContainer) {
+                buttonContainer.remove();
             }
-        });
+
+            addMessage(suggestion, true);
+
+            // Get AI response
+            setTimeout(() => {
+                console.log('Getting response for:', suggestion); // Debug log
+                const response = getSuggestionResponse(suggestion);
+                console.log('Response:', response); // Debug log
+                addMessage(response, false);
+            }, 500);
+        }
+
+        function getSuggestions(career) {
+            const suggestions = {
+                farmer: [
+                    '🌾 Trồng lúa miền Tây',
+                    '🌶️ Bệnh cây ớt vàng lá',
+                    '🐔 Gà thả vườn bị bệnh',
+                    '🍈 Kỹ thuật trồng dưa lưới',
+                    '🌸 Sầu riêng ra hoa bón phân',
+                    '☕ Nhắc bón phân cà phê',
+                    '💰 Cập nhật giá nông sản',
+                    '🌤️ Dự báo thời tiết nông vụ',
+                    '🌿 Kỹ thuật diệt cỏ hiệu quả'
+                ],
+                business: [
+                    'Phân tích thị trường & đối thủ',
+                    'Xây dựng kế hoạch kinh doanh',
+                    'Tư vấn marketing & bán hàng',
+                    'Gợi ý tối ưu chi phí'
+                ],
+                teacher: [
+                    'Soạn giáo án sáng tạo',
+                    'Tư vấn phương pháp giảng dạy',
+                    'Hỗ trợ quản lý lớp học',
+                    'Gợi ý công cụ AI trong giáo dục'
+                ],
+                developer: [
+                    'Hỗ trợ tìm và sửa lỗi (debug)',
+                    'Gợi ý tối ưu hóa code',
+                    'Giải thích khái niệm & công nghệ',
+                    'Tư vấn về kiến trúc phần mềm'
+                ],
+                sales: [
+                    'Kỹ năng bán hàng: 1) Hiểu rõ nhu cầu khách hàng, 2) Tư vấn sản phẩm hiệu quả, 3) Xây dựng mối quan hệ tốt với khách hàng, 4) Quản lý đơn hàng hiệu quả.',
+                    'Kỹ năng chăm sóc khách hàng: 1) Lắng nghe tích cực, 2) Phản hồi nhanh chóng, 3) Tạo cảm giác thoải mái và tin cậy, 4) Xây dựng mối quan hệ dài hạn với khách hàng.',
+                    'Marketing sản phẩm: 1) Tạo nội dung marketing hiệu quả, 2) Sử dụng các kênh marketing hiệu quả, 3) Tạo sự hấp dẫn và khác biệt cho sản phẩm, 4) Quản lý chi phí marketing.',
+                    'Quản lý đơn hàng: 1) Xác nhận đơn hàng nhanh chóng, 2) Phân tích nhu cầu khách hàng, 3) Tạo kế hoạch phân phối hàng hóa, 4) Quản lý kho hàng hiệu quả.'
+                ],
+                office: [
+                    'Quản lý tài liệu: 1) Sắp xếp và phân loại tài liệu hiệu quả, 2) Sử dụng các công cụ quản lý tài liệu, 3) Bảo mật thông tin quan trọng, 4) Tối ưu hóa quy trình tìm kiếm tài liệu.',
+                    'Lập kế hoạch công việc: 1) Phân tích nhu cầu công việc, 2) Lập kế hoạch chi tiết và thực hiện, 3) Đánh giá tiến độ và điều chỉnh, 4) Tạo môi trường làm việc hiệu quả.',
+                    'Giao tiếp nội bộ: 1) Lắng nghe tích cực, 2) Phản hồi kịp thời, 3) Tạo môi trường làm việc thân thiện, 4) Xây dựng mối quan hệ lâu dài với đồng nghiệp.',
+                    'Công cụ văn phòng: 1) Sử dụng các phần mềm văn phòng hiệu quả, 2) Tối ưu hóa quy trình làm việc, 3) Tạo môi trường làm việc hiệu quả, 4) Quản lý thông tin và tài liệu.'
+                ],
+                other: [
+                    'Tìm kiếm & tổng hợp thông tin',
+                    'Lên kế hoạch & quản lý công việc',
+                    'Tư vấn phát triển kỹ năng',
+                    'Brainstorm ý tưởng mới'
+                ]
+            };
+            return suggestions[career] || suggestions.other;
+        }
+
+        function getSuggestionResponse(problem) {
+            console.log('getSuggestionResponse called with:', problem); // Debug log
+            console.log('currentCareer:', currentCareer); // Debug log
+            
+            const name = userProfile.name || 'Bạn';
+            let response = '';
+             switch(currentCareer) {
+                case 'farmer':
+                    console.log('Processing farmer case'); // Debug log
+                    switch(problem) {
+                        case '🌾 Trồng lúa miền Tây':
+                            response = `Dạ, về trồng lúa ở miền Tây, cháu sẽ hướng dẫn chú/cô chi tiết về bón phân và chăm sóc hiệu quả ạ.`;
+                            break;
+                        case '🌶️ Bệnh cây ớt vàng lá':
+                            response = `Dạ, về cây ớt bị vàng lá và rụng trái, có thể do nấm hoặc thiếu dinh dưỡng. Cháu sẽ hướng dẫn chú/cô cách xử lý ạ.`;
+                            break;
+                        case '🐔 Gà thả vườn bị bệnh':
+                            response = `Dạ, về gà thả vườn ăn ít và tiêu chảy, có thể do bệnh hoặc thức ăn. Cháu sẽ hướng dẫn chú/cô cách xử lý ạ.`;
+                            break;
+                        case '🍈 Kỹ thuật trồng dưa lưới':
+                            response = `Dạ, dưa lưới là cây trồng có giá trị kinh tế cao. Cháu sẽ hướng dẫn chú/cô kỹ thuật trồng dưa lưới từ A-Z để đạt năng suất tối ưu ạ.`;
+                            break;
+                        case '🌸 Sầu riêng ra hoa bón phân':
+                            response = `Dạ, về cây sầu riêng giai đoạn ra hoa, cháu sẽ hướng dẫn chú/cô loại phân phù hợp ạ.`;
+                            break;
+                        case '☕ Nhắc bón phân cà phê':
+                            response = `Dạ, về cây cà phê, cháu sẽ nhắc chú/cô bón phân định kỳ vào sáng thứ Bảy hàng tuần ạ.`;
+                            break;
+                        case '💰 Cập nhật giá nông sản':
+                            response = `Dạ, về giá nông sản, cháu sẽ cập nhật thông tin mới nhất cho chú/cô ạ.`;
+                            break;
+                        case '🌤️ Dự báo thời tiết nông vụ':
+                            response = `Để xem dự báo thời tiết, vui lòng cho tôi biết tỉnh/thành phố của bạn.\n_(Lưu ý: Đây là dữ liệu giả lập. Trong phiên bản chính thức sẽ kết nối nguồn khí tượng thực tế)._`;
+                            break;
+                        case '🌿 Kỹ thuật diệt cỏ hiệu quả':
+                            response = `🌿 Kỹ thuật diệt cỏ hiệu quả:\n\n👨‍🌾 Diệt cỏ thủ công:\n• Nhổ cỏ bằng tay: Hiệu quả, an toàn\n• Cắt cỏ bằng liềm: Nhanh, tiết kiệm\n• Làm cỏ định kỳ: 2-3 lần/vụ\n• Thời điểm: Sáng sớm hoặc chiều mát\n\n🧪 Thuốc diệt cỏ:\n• Glyphosate: Diệt cỏ toàn diện\n• 2,4-D: Diệt cỏ lá rộng\n• Paraquat: Diệt cỏ tiếp xúc\n• Lưu ý: Đọc kỹ hướng dẫn, bảo hộ đầy đủ\n\n🌱 Diệt cỏ hữu cơ:\n• Muối: Rải muối vào gốc cỏ\n• Giấm: Phun giấm trắng 5%\n• Nước sôi: Đổ nước sôi vào gốc\n• Che phủ: Dùng bạt, rơm rạ\n\n🛡️ Phòng ngừa cỏ:\n• Trồng dày: Giảm ánh sáng đến đất\n• Che phủ: Rơm rạ, bạt nilon\n• Luân canh: Thay đổi cây trồng\n• Vệ sinh: Dọn sạch cỏ quanh vườn`;
+                            break;
+                        default:
+                            console.log('No matching case found for:', problem); // Debug log
+                            response = `Tôi sẵn sàng hỗ trợ. ${name} vui lòng cho tôi biết thêm chi tiết về vấn đề này.`;
+                    }
+                    break;
+                case 'business':
+                     switch(problem) {
+                        case 'Phân tích thị trường & đối thủ':
+                            response = `Để phân tích, vui lòng cung cấp cho tôi thông tin về ngành hàng và một vài đối thủ chính của ${name}.`;
+                            break;
+                        case 'Xây dựng kế hoạch kinh doanh':
+                            response = `Xây dựng kế hoạch kinh doanh là một bước quan trọng. Chúng ta có thể bắt đầu bằng việc xác định mục tiêu, thị trường, sản phẩm và chiến lược marketing. ${name} muốn bắt đầu với phần nào trước?`;
+                            break;
+                        case 'Tư vấn marketing & bán hàng':
+                            response = `Chắc chắn rồi. ${name} đang quan tâm đến marketing online (Facebook, Google), marketing tại điểm bán hay kênh nào khác?`;
+                            break;
+                        case 'Gợi ý tối ưu chi phí':
+                            response = `Để tối ưu chi phí, chúng ta có thể rà soát các khoản chi cho vận hành, nhân sự, marketing... ${name} có muốn xem qua một checklist các hạng mục cần tối ưu không?`;
+                            break;
+                        default:
+                            response = `Tôi sẵn sàng hỗ trợ. ${name} vui lòng cho tôi biết thêm chi tiết về vấn đề này.`;
+                    }
+                    break;
+                // ... (Các ngành nghề khác sẽ có logic tương tự)
+                default:
+                    response = `Tôi đã ghi nhận yêu cầu của bạn về "${problem}". Vui lòng cung cấp thêm chi tiết để tôi có thể hỗ trợ tốt nhất.`;
+            }
+            return response;
+        }
     </script>
 </body>
 </html>
