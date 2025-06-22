@@ -93,14 +93,19 @@
                 <div class="grid grid-cols-3 gap-6">
                     <!-- Nông dân -->
                     <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('farmer')">
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center w-full">
                             <div class="bg-green-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
                                 <i data-lucide="leaf" class="w-10 h-10 text-green-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nông dân</h3>
-                            <p class="text-gray-500 text-sm mb-4">Thời tiết, canh tác, sâu bệnh</p>
+                            <div class="block sm:hidden">
+                                <h3 class="text-lg font-bold text-gray-800 mb-0">Nông dân</h3>
+                            </div>
+                            <div class="hidden sm:block w-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Nông dân</h3>
+                                <p class="text-gray-500 text-sm mb-4">Thời tiết, canh tác, sâu bệnh</p>
+                            </div>
                         </div>
-                        <div class="bg-green-50 p-4 rounded-xl w-full">
+                        <div class="hidden sm:block bg-green-50 p-4 rounded-xl w-full">
                             <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
                             <ul class="text-sm text-gray-600 space-y-1 text-left">
                                 <li>• Dự báo thời tiết</li>
@@ -111,14 +116,19 @@
                     </div>
                     <!-- Doanh nhân -->
                     <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('business')">
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center w-full">
                             <div class="bg-blue-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
                                 <i data-lucide="briefcase" class="w-10 h-10 text-blue-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Doanh nhân</h3>
-                            <p class="text-gray-500 text-sm mb-4">Kinh doanh, marketing</p>
+                            <div class="block sm:hidden">
+                                <h3 class="text-lg font-bold text-gray-800 mb-0">Doanh nhân</h3>
+                            </div>
+                            <div class="hidden sm:block w-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Doanh nhân</h3>
+                                <p class="text-gray-500 text-sm mb-4">Kinh doanh, marketing</p>
+                            </div>
                         </div>
-                        <div class="bg-blue-50 p-4 rounded-xl w-full">
+                        <div class="hidden sm:block bg-blue-50 p-4 rounded-xl w-full">
                             <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
                             <ul class="text-sm text-gray-600 space-y-1 text-left">
                                 <li>• Chiến lược kinh doanh</li>
@@ -129,18 +139,23 @@
                     </div>
                     <!-- Giáo viên -->
                     <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('teacher')">
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center w-full">
                             <div class="bg-purple-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
                                 <i data-lucide="book-open" class="w-10 h-10 text-purple-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Giáo viên</h3>
-                            <p class="text-gray-500 text-sm mb-4">Giảng dạy, giáo án</p>
+                            <div class="block sm:hidden">
+                                <h3 class="text-lg font-bold text-gray-800 mb-0">Giáo viên</h3>
+                            </div>
+                            <div class="hidden sm:block w-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Giáo viên</h3>
+                                <p class="text-gray-500 text-sm mb-4">Giảng dạy, giáo án</p>
+                            </div>
                         </div>
-                        <div class="bg-purple-50 p-4 rounded-xl w-full">
+                        <div class="hidden sm:block bg-purple-50 p-4 rounded-xl w-full">
                             <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
                             <ul class="text-sm text-gray-600 space-y-1 text-left">
                                 <li>• Soạn giáo án</li>
-                                <li>• Phương pháp dạy</li>
+                                <li>• Phương pháp dạy học</li>
                                 <li>• Quản lý lớp học</li>
                             </ul>
                         </div>
@@ -150,55 +165,70 @@
                 <div class="grid grid-cols-3 gap-6">
                     <!-- Lập trình viên -->
                     <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('developer')">
-                        <div class="flex flex-col items-center">
-                            <div class="bg-indigo-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
-                                <i data-lucide="code" class="w-10 h-10 text-indigo-600"></i>
+                        <div class="flex flex-col items-center w-full">
+                            <div class="bg-yellow-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="code" class="w-10 h-10 text-yellow-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Lập trình viên</h3>
-                            <p class="text-gray-500 text-sm mb-4">Coding, debug, framework</p>
+                            <div class="block sm:hidden">
+                                <h3 class="text-lg font-bold text-gray-800 mb-0">Lập trình viên</h3>
+                            </div>
+                            <div class="hidden sm:block w-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Lập trình viên</h3>
+                                <p class="text-gray-500 text-sm mb-4">Phát triển phần mềm, website</p>
+                            </div>
                         </div>
-                        <div class="bg-indigo-50 p-4 rounded-xl w-full">
+                        <div class="hidden sm:block bg-yellow-50 p-4 rounded-xl w-full">
                             <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
                             <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                <li>• Best practices</li>
-                                <li>• Debug & testing</li>
-                                <li>• Framework & công nghệ</li>
+                                <li>• Frontend/Backend</li>
+                                <li>• Database/API</li>
+                                <li>• DevOps, Cloud</li>
                             </ul>
                         </div>
                     </div>
                     <!-- Nhân viên bán hàng -->
                     <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('sales')">
-                        <div class="flex flex-col items-center">
-                            <div class="bg-orange-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
-                                <i data-lucide="shopping-cart" class="w-10 h-10 text-orange-600"></i>
+                        <div class="flex flex-col items-center w-full">
+                            <div class="bg-pink-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="shopping-bag" class="w-10 h-10 text-pink-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nhân viên bán hàng</h3>
-                            <p class="text-gray-500 text-sm mb-4">Tư vấn, CSKH, sales</p>
+                            <div class="block sm:hidden">
+                                <h3 class="text-lg font-bold text-gray-800 mb-0">Bán hàng</h3>
+                            </div>
+                            <div class="hidden sm:block w-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Nhân viên bán hàng</h3>
+                                <p class="text-gray-500 text-sm mb-4">Kinh doanh, tư vấn, chăm sóc khách</p>
+                            </div>
                         </div>
-                        <div class="bg-orange-50 p-4 rounded-xl w-full">
+                        <div class="hidden sm:block bg-pink-50 p-4 rounded-xl w-full">
                             <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
                             <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                <li>• Kỹ năng bán hàng</li>
-                                <li>• Chăm sóc khách hàng</li>
-                                <li>• Quản lý đơn hàng</li>
+                                <li>• Viết bài review sản phẩm</li>
+                                <li>• Định giá, tư vấn khách</li>
+                                <li>• Kỹ năng chốt sale</li>
                             </ul>
                         </div>
                     </div>
                     <!-- Nhân viên văn phòng -->
                     <div class="career-card bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center h-full justify-between cursor-pointer hover:shadow-xl transition-all duration-300" onclick="selectCareer('office')">
-                        <div class="flex flex-col items-center">
-                            <div class="bg-teal-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
-                                <i data-lucide="building" class="w-10 h-10 text-teal-600"></i>
+                        <div class="flex flex-col items-center w-full">
+                            <div class="bg-cyan-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                                <i data-lucide="file-text" class="w-10 h-10 text-cyan-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Nhân viên văn phòng</h3>
-                            <p class="text-gray-500 text-sm mb-4">Hành chính, quản lý</p>
+                            <div class="block sm:hidden">
+                                <h3 class="text-lg font-bold text-gray-800 mb-0">Văn phòng</h3>
+                            </div>
+                            <div class="hidden sm:block w-full">
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Nhân viên văn phòng</h3>
+                                <p class="text-gray-500 text-sm mb-4">Soạn thảo, quản lý, báo cáo</p>
+                            </div>
                         </div>
-                        <div class="bg-teal-50 p-4 rounded-xl w-full">
+                        <div class="hidden sm:block bg-cyan-50 p-4 rounded-xl w-full">
                             <p class="text-sm text-gray-700 mb-2 font-semibold">Hỗ trợ:</p>
                             <ul class="text-sm text-gray-600 space-y-1 text-left">
-                                <li>• Quản lý tài liệu</li>
-                                <li>• Kế hoạch công việc</li>
-                                <li>• Công cụ văn phòng</li>
+                                <li>• Viết mail chuyên nghiệp</li>
+                                <li>• Lập kế hoạch, báo cáo</li>
+                                <li>• Quản lý thời gian, Excel</li>
                             </ul>
                         </div>
                     </div>
@@ -2062,13 +2092,11 @@ Bạn có muốn tôi tư vấn thêm về vấn đề khác không?`;
                     'Tư vấn về kiến trúc phần mềm'
                 ],
                 sales: [
-                
-                        '📝 Viết bài post review sản phẩm thu hút',
-                        '🎥 Quay/chụp sản phẩm hấp dẫn',
-                        '💰 Định giá sản phẩm hợp lý',
-                        '💬 Cách nói chuyện với khách hàng',
-                        '🤝 Xử lý khách hàng trả giá'
-                 
+                    '📝 Viết bài post review sản phẩm thu hút',
+                    '🎥 Quay/chụp sản phẩm hấp dẫn',
+                    '💰 Định giá sản phẩm hợp lý',
+                    '💬 Cách nói chuyện với khách hàng',
+                    '🤝 Xử lý khách hàng trả giá'
                 ],
                 office: [
                     'Quản lý tài liệu: 1) Sắp xếp và phân loại tài liệu hiệu quả, 2) Sử dụng các công cụ quản lý tài liệu, 3) Bảo mật thông tin quan trọng, 4) Tối ưu hóa quy trình tìm kiếm tài liệu.',
@@ -2129,17 +2157,17 @@ Bạn có muốn tôi tư vấn thêm về vấn đề khác không?`;
                     }
                     break;
 
-                case 'saler':
+                case 'sales':
                     console.log('Processing saler case'); // Debug log
                     switch(problem) {
-                        case 'Bí quyết chốt đơn hiệu quả':
+                    case '📝 Viết bài post review sản phẩm thu hút':
                         esponse = `Một số bí quyết giúp bạn chốt đơn thành công:
-                                - Lắng nghe kỹ nhu cầu và vấn đề của khách hàng
-                                - Tư vấn đúng trọng tâm, nhấn mạnh lợi ích sản phẩm phù hợp với khách
-                                - Tạo cảm giác cấp bách (ưu đãi giới hạn, số lượng có hạn...)
-                                - Giải đáp mọi thắc mắc, xử lý từ chối một cách nhẹ nhàng
-                                - Đưa ra lời kêu gọi hành động rõ ràng: "Chốt đơn ngay hôm nay để nhận ưu đãi!"`;
-                    break;
+                                    - Lắng nghe kỹ nhu cầu và vấn đề của khách hàng
+                                    - Tư vấn đúng trọng tâm, nhấn mạnh lợi ích sản phẩm phù hợp với khách
+                                    - Tạo cảm giác cấp bách (ưu đãi giới hạn, số lượng có hạn...)
+                                    - Giải đáp mọi thắc mắc, xử lý từ chối một cách nhẹ nhàng
+                                    - Đưa ra lời kêu gọi hành động rõ ràng: "Chốt đơn ngay hôm nay để nhận ưu đãi!"`;
+                        break;
                     case 'Chăm sóc khách hàng sau bán':
                     response = `Chăm sóc khách hàng sau bán giúp tăng sự hài lòng và giữ chân khách:
                         - Gửi lời cảm ơn sau khi khách mua hàng
@@ -2147,7 +2175,7 @@ Bạn có muốn tôi tư vấn thêm về vấn đề khác không?`;
                         - Gửi ưu đãi, thông tin sản phẩm mới cho khách cũ
                         - Xây dựng mối quan hệ thân thiết, tạo sự tin tưởng lâu dài`;
                     break;
-                case 'Quản lý đơn hàng và tồn kho thông minh':
+                    case 'Quản lý đơn hàng và tồn kho thông minh':
                     response = `Để quản lý đơn hàng và tồn kho hiệu quả:
                         - Sử dụng sổ sách, file Excel hoặc phần mềm quản lý bán hàng để theo dõi đơn và tồn kho
                         - Xác nhận đơn hàng nhanh chóng, cập nhật trạng thái cho khách
@@ -2164,6 +2192,7 @@ Bạn có muốn tôi tư vấn thêm về vấn đề khác không?`;
                 default:
                     response = `Tôi sẵn sàng hỗ trợ. ${name} vui lòng cho tôi biết thêm chi tiết về vấn đề này.`;
             }
+                
                 case 'business':
                      switch(problem) {
                         case 'Phân tích thị trường & đối thủ':
